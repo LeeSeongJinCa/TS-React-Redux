@@ -7,8 +7,7 @@ interface Props {
 
 const MainContainer: React.FC<Props> = () => {
   return (
-    <Main>
-    </Main>
+    <Main/>
   )
 }
 
