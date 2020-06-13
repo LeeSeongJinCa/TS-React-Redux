@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -30,7 +31,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|svg|gif|ttf|woff|woff2|eot|TTF)$/,
+        test: /\.(jpg|png|jpe?g|svg|gif|ttf|woff|woff2|eot|TTF)$/i,
         use: [
           {
             loader: 'url-loader',
@@ -56,11 +57,13 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   devtool: 'inline-source-map',
   devServer: {
     inline: true,
     port: 7778,
+    hot: true,
     historyApiFallback: true,
   },
 };
