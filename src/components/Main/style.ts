@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 import {
   globalBackColor,
-  globalButtonColor,
-  globalColor,
-  globalComplementaryColor,
-  globalComplementaryBackColor,
 } from '../../GlobalStyle';
 
 export const Main = styled.div`
   box-shadow: 3px 3px 10px #777777;
+  margin-bottom: 50px;
   span { color: #b6b6b6; }
   > #inbox {
     #bottom-wrap {

@@ -16,9 +16,17 @@
         "allow-pascal-case"
       ]
     },
-    "no-empty-interface": true,
+    "no-empty-interface": false,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "import-name": [
+      true,
+      {
+        "lodash": "_",
+        "fp": "_",
+        "styledComponents": "styled"
+      }
+    ]
   },
   "rulesDirectory": []
 }
