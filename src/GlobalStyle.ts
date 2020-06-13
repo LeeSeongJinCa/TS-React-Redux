@@ -8,6 +8,11 @@ export const GlobalStyle: GlobalStyleComponent<
   {},
   DefaultTheme
 > = createGlobalStyle`
+* {
+  font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+  box-sizing: border-box;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -26,6 +31,20 @@ time, mark, audio, video, button {
   border: 0;
 }
 
+article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+a {
+  text-decoration: none;
+}
+
 input:focus,
 select:focus,
 textarea:focus,
@@ -37,11 +56,6 @@ button {
   cursor: pointer;
   font: none;
   font-family: 'Noto Sans', sans-serif;
-}
-
-* {
-  font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
-  box-sizing: border-box;
 }
 
 #root {
