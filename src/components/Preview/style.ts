@@ -50,6 +50,7 @@ export const MainHeaderPreviewAsideCircle = styled.circle`
   fill: none;
   stroke-width: 3px;
   stroke-linecap: round;
+  transition: 0.8s;
   &:nth-child(1) {
     stroke: ${globalComplementaryColor};
   }
