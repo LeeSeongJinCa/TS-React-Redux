@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as S from './style';
-import { Preview } from '../';
+import { Preview, Inbox } from '../';
 
 interface Props { }
 
@@ -10,11 +10,7 @@ const Main: React.FC<Props> = () => {
       <S.MainHeader>
         <Preview />
       </S.MainHeader>
-      {/* <section>
-        <h3>목록</h3>
-        <div>
-        </div>
-      </section> */}
+      <Inbox />
     </S.Main>
   )
 }
