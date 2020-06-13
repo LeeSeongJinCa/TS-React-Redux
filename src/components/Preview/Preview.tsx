@@ -1,6 +1,6 @@
 import React from 'react';
-import hamburgerIcon from '../../assets/icon/hamburgerIcon.svg';
-import * as S from './style';
+import PreviewMain from '../PreviewMain/PreviewMain';
+import PreviewAside from '../PreviewAside/PreviewAside';
 
 interface Props {
 
@@ -8,10 +8,11 @@ interface Props {
 
 const Preview: React.FC<Props> = () => {
   return (
-    <S.Preview>
-      
-    </S.Preview>
-  )
-}
+    <>
+      <PreviewMain />
+      <PreviewAside />
+    </>
+  );
+};
 
 export default Preview;
