@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as S from './style';
-import pencilSvg from '../../assets/icon/pencil.svg';
+// import pencilSvg from '../../assets/icon/pencil.svg';
 
 interface Props { }
 
@@ -8,7 +8,7 @@ const InboxInput: React.FC<Props> = () => {
   return (
     <S.InboxInput>
       <S.InboxInputImgWrap>
-        <S.InboxInputImg src={pencilSvg} alt="pencil" title="pencil" />
+        {/* <S.InboxInputImg src={pencilSvg} alt="pencil" title="pencil" /> */}
       </S.InboxInputImgWrap>
       <S.InboxInputInfo>
         <h3>Final design</h3>
