@@ -3,6 +3,8 @@ import {
   globalBackColor,
   globalButtonColor,
   globalColor,
+  globalComplementaryColor,
+  globalComplementaryBackColor,
 } from '../../GlobalStyle';
 
 export const Main = styled.div`
@@ -15,10 +17,24 @@ export const Main = styled.div`
       color: ${globalColor};
     }
     > ul {
+      max-height: 320px;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 5px;
+        background: none;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: ${globalComplementaryColor};
+        border-radius: 16px;
+      }
+      &::-webkit-scrollbar-track {
+        background: ${globalComplementaryBackColor};
+      }
       > li {
         display: flex;
-        border-bottom: 1.5px solid ${globalColor};
+        height: 80px;
         padding: 16px 8px;
+        border-bottom: 1.5px solid ${globalColor};
         > .img-wrap {
           display: flex;
           align-items: center;
@@ -48,8 +64,21 @@ export const Main = styled.div`
     }
     #bottom-wrap {
       position: relative;
-      > div {
-
+      > #completed-wrap {
+        display: inline-block;
+        margin-top: 12px;
+        font-size: 14px;
+        > #completed-num {
+          display: inline-block;
+          width: 25px;
+          height: 25px;
+          margin-left: 12px;
+          line-height: 25px;
+          text-align: center;
+          border-radius: 50%;
+          color: white;
+          background-color: ${globalBackColor};
+        }
       }
       > img {
         position: absolute;
@@ -57,7 +86,6 @@ export const Main = styled.div`
         right: 0;
         width: 45px;
         height: 45px;
-        box-shadow: 0 0 5px ${globalButtonColor};
       }
     }
   }
