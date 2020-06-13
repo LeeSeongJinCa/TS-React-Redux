@@ -8,7 +8,7 @@ import {
   MainContainer,
 } from './containers';
 
-interface RoutingProps {}
+interface RoutingProps { }
 
 const Routing: React.StatelessComponent<RoutingProps> = () => {
   return (

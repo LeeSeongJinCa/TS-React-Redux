@@ -16,7 +16,9 @@
         "allow-pascal-case"
       ]
     },
-    "no-empty-interface": true
+    "no-empty-interface": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "rulesDirectory": []
 }
