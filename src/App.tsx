@@ -7,13 +7,13 @@ import { GlobalStyle } from './GlobalStyle';
 //   HeaderContainer,
 //   ModalContainer,
 // } from './containers';
-// import Routing from './Routing';
+import Routing from './Routing';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <GlobalStyle />
-    {/*
+      {/*
       <MainWrapper>
       <SideBarContainer />
       <ChattingContainer />
@@ -24,9 +24,9 @@ function App() {
       </ContentWrapper>
       </MainWrapper>
     */}
-      <div>first</div>
+      <Routing />
     </BrowserRouter>
   );
-}
+};
 
 export default App;

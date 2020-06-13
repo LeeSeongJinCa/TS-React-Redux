@@ -41,7 +41,17 @@ button {
 
 * {
   font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+  box-sizing: border-box;
+}
+
+#root {
+  width: 680px;
+  margin: 50px auto 0;
 }
 `;
 
-export const globalColor = '#a15eea';
+export const globalColor = '#E669FF';
+export const globalBackColor = '#923EA3';
+export const globalButtonColor = '#D96CF0';
+export const globalComplementaryColor = '#6EA329';
+export const globalComplementaryBackColor = '#B6F06C';
