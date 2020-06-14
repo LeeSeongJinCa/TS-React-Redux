@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as S from './style';
 import { Preview, Inbox } from '../';
 
@@ -12,7 +12,7 @@ const Main: React.FC<Props> = () => {
       </S.MainHeader>
       <Inbox />
     </S.Main>
-  )
-}
+  );
+};
 
 export default Main;
