@@ -2,11 +2,11 @@ import React, { useRef } from 'react';
 import * as S from './style';
 import plusSvg from '../../assets/icon/plus.svg';
 
-interface Props { }
+interface Props {
+  completed: React.MutableRefObject<number>;
+}
 
-const InboxBottom: React.FC<Props> = () => {
-  const completed = useRef(0);
-
+const InboxBottom: React.FC<Props> = ({ completed }) => {
   return (
     <S.InboxBottom>
       <S.InboxBottomCompleted>
