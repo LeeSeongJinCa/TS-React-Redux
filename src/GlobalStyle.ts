@@ -35,14 +35,21 @@ article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
   display: block;
 }
+
 ol, ul {
   list-style: none;
 }
+
 blockquote, q {
   quotes: none;
 }
+
 a {
   text-decoration: none;
+}
+
+img {
+  cursor: pointer;
 }
 
 input:focus,

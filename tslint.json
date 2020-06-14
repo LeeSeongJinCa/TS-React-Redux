@@ -24,9 +24,12 @@
       {
         "lodash": "_",
         "fp": "_",
-        "styledComponents": "styled"
+        "styledComponents": "styled",
+        "reactDom": "ReactDom",
+        "react": "React"
       }
-    ]
+    ],
+    "no-console": false
   },
   "rulesDirectory": []
 }

@@ -1,21 +1,17 @@
 import * as React from 'react';
 import * as S from './style';
-import InboxInputList from '../InboxInputList/InboxInputList';
-import plusSvg from '../../assets/icon/plus.svg';
 
-interface Props { }
+interface Props {
+  inputList: React.ReactElement;
+  inboxBottom: React.ReactElement;
+}
 
-const Inbox: React.FC<Props> = () => {
+const Inbox: React.FC<Props> = ({ inputList, inboxBottom }) => {
   return (
     <S.Inbox>
       <S.InboxTitle>목록</S.InboxTitle>
-      <InboxInputList />
-      <div id="bottom-wrap">
-        <div id="completed-wrap">
-          <span>COMPLETED</span><span id="completed-num">5</span>
-        </div>
-        <img id="plus" src={plusSvg} alt="plus" title="plus" />
-      </div>
+      {inputList}
+      {inboxBottom}
     </S.Inbox>
   );
 };
