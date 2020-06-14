@@ -1,20 +1,10 @@
 import React from 'react';
 import * as S from './style';
 
-interface Props {
-  previewWrap: React.ReactElement;
-  inboxWrap: React.ReactElement;
-}
+interface Props {}
 
-const Main: React.FC<Props> = ({ previewWrap, inboxWrap }) => {
-  return (
-    <S.Main>
-      <S.MainHeader>
-        {previewWrap}
-      </S.MainHeader>
-      {inboxWrap}
-    </S.Main>
-  );
+const Main: React.FC<Props> = ({ children }) => {
+  return <S.Main>{children}</S.Main>;
 };
 
 export default Main;
