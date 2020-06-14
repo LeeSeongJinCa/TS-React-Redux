@@ -1,16 +1,18 @@
 import React from 'react';
 import * as S from './style';
-import { Preview, Inbox } from '../';
 
-interface Props { }
+interface Props {
+  previewWrap: React.ReactElement;
+  inboxWrap: React.ReactElement;
+}
 
-const Main: React.FC<Props> = () => {
+const Main: React.FC<Props> = ({ previewWrap, inboxWrap }) => {
   return (
     <S.Main>
       <S.MainHeader>
-        <Preview />
+        {previewWrap}
       </S.MainHeader>
-      <Inbox />
+      {inboxWrap}
     </S.Main>
   );
 };

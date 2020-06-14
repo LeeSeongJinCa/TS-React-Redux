@@ -28,7 +28,8 @@
         "reactDom": "ReactDom",
         "react": "React"
       }
-    ]
+    ],
+    "no-console": false
   },
   "rulesDirectory": []
 }
