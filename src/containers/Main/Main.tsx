@@ -1,20 +1,15 @@
 import React from 'react';
-import { Main, Preview, Inbox } from '../../components';
-import { InboxInputListContainer, InboxBottomContainer } from '../../containers';
+import { Main, Preview } from '../../components';
+import { InboxContainer, PreviewContainer } from '../../containers';
 
 interface Props {}
 
 const MainContainer: React.FC<Props> = () => {
   return (
-    <Main
-      previewWrap={<Preview />}
-      inboxWrap={
-        <Inbox
-          inputList={<InboxInputListContainer />}
-          inboxBottom={<InboxBottomContainer />}
-        />
-      }
-    />
+    <Main>
+      <PreviewContainer />
+      <InboxContainer />
+    </Main>
   );
 };
 
