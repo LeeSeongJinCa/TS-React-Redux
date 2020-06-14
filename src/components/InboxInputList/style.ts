@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  globalColor,
   globalComplementaryColor,
   globalComplementaryBackColor,
 } from '../../GlobalStyle';
@@ -20,4 +21,9 @@ export const InboxInputList = styled.ul`
     background: ${globalComplementaryBackColor};
     border-radius: 16px;
   }
+`;
+
+export const InboxTitle = styled.h3`
+  margin-bottom: 12px;
+  color: ${globalColor};
 `;

@@ -67,7 +67,8 @@ button {
 
 #root {
   width: 680px;
-  margin: 50px auto 0;
+  margin: 50px auto;
+  box-shadow: 0 3px 4px #121212;
 }
 `;
 

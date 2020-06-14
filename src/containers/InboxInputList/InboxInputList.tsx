@@ -36,18 +36,17 @@ const InboxInputListContainer: React.FC<Props> = () => {
     },
   ];
 
-  const inputList: React.ReactElement[] = useMemo(() => inputs.map((input, i) =>
-    <InboxInput
+  const inputList: React.ReactElement[] = useMemo(() => inputs.map((input, i) => {
+    return (<InboxInput
       key={i}
       title={input.title}
       subTitle={input.subTitle}
       until={input.until}
-    />,
+    />);
+  },
   ), []);
 
-  return (
-    <InboxInputList inputList={inputList} />
-  );
+  return <InboxInputList inputList={inputList} />;
 };
 
 export default InboxInputListContainer;

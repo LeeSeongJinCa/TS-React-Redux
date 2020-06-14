@@ -1,5 +1,6 @@
 import React from 'react';
-import { InboxWrap, InboxInputList, InboxBottom } from '../../components';
+import { Inbox } from '../../components';
+import { InboxInputListContainer, InboxBottomContainer } from '../../containers';
 
 interface Props {
 
@@ -7,11 +8,11 @@ interface Props {
 
 const InboxContainer: React.FC<Props> = () => {
   return (
-    <InboxWrap>
-      <InboxInputList />
-      <InboxBottom />
-    </InboxWrap>
-  )
-}
+    <Inbox>
+      <InboxInputListContainer />
+      <InboxBottomContainer />
+    </Inbox>
+  );
+};
 
 export default InboxContainer;
