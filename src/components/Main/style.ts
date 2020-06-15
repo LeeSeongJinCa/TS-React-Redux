@@ -5,7 +5,6 @@ import {
 
 export const Main = styled.div`
   box-shadow: 3px 3px 10px #777777;
-  margin-bottom: 50px;
   span { color: #b6b6b6; }
   #bottom-wrap {
     position: relative;
@@ -33,12 +32,4 @@ export const Main = styled.div`
       height: 45px;
     }
   }
-`;
-
-export const MainHeader = styled.header`
-  position: relative;
-  height: 250px;
-  padding: 24px;
-  color: white;
-  background-color: ${globalBackColor};
 `;

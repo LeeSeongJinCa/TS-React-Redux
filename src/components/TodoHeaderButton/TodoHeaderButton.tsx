@@ -4,7 +4,7 @@ interface Props {
 
 }
 
-const TodoEditButton: React.FC<Props> = () => {
+const TodoButton: React.FC<Props> = () => {
   return (
     <div>
       asd
@@ -12,4 +12,4 @@ const TodoEditButton: React.FC<Props> = () => {
   );
 };
 
-export default TodoEditButton;
+export default TodoButton;
