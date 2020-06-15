@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
-import plusSvg from '../../assets/icon/plus.svg';
+import { plusSvg } from '../../assets';
 
 interface Props {
   completed: React.MutableRefObject<number>;
@@ -13,7 +14,9 @@ const InboxBottom: React.FC<Props> = ({ completed }) => {
         <span>COMPLETED</span>
         <S.InboxBottomCompletedNum>{completed.current}</S.InboxBottomCompletedNum>
       </S.InboxBottomCompleted>
-      <S.InboxBottomPlus src={plusSvg} alt="plus" title="plus" />
+      <Link to="/todo">
+        <S.InboxBottomPlus src={plusSvg} alt="plus" title="plus" />
+      </Link>
     </S.InboxBottom>
   );
 };
