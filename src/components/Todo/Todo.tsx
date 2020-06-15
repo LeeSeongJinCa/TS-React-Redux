@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
+import * as S from './style';
 import {
-  undoSvg,
-  tuneSvg,
-  cancelSvg,
   pencilSvg,
   sportsSvg,
   musicSvg,
   businessSvg,
   notSvg,
-  arrowSvg,
 } from '../../assets';
-import * as S from './style';
-import { TodoAddButton } from '../../components';
+import {
+  TodoHeader,
+  TodoTable,
+  TodoAddButton,
+} from '../../components';
 
 interface Props {
 
@@ -56,14 +56,14 @@ const Todo: React.FC<Props> = () => {
   };
 
   const onClickSelectedType = (event: any) => {
-    const { target: { dataset: { type, idx } } } = event;
+    const { type, idx } = event.target.dataset;
     const baseData = selectList[idx].base64;
     setSelectedType(type);
     setSpreadOut(false);
     shownImg.current.src = baseData;
   };
 
-  const getSelectList = () => {
+  const getSelectList: React.ReactElement[] = useMemo(() => {
     return selectList.map((item: ISelectList) => {
       return (
         <S.TodoInputTableRowSeletedItem
@@ -74,46 +74,21 @@ const Todo: React.FC<Props> = () => {
         >{item.type}</S.TodoInputTableRowSeletedItem>
       );
     });
-  };
+  }, []);
 
   return (
     <S.Todo>
-      <S.TodoHeader>
-        <S.TodoHeaderNav>
-          <S.TodoHeaderNavImg src={undoSvg} alt="undo" title="undo" />
-          <S.TodoHeaderNavTiitle>Add new thing</S.TodoHeaderNavTiitle>
-          <S.TodoHeaderNavImg src={tuneSvg} alt="menu" title="menu" />
-        </S.TodoHeaderNav>
-        <S.TodoHeaderShownImgWrap>
-          <S.TodoHeaderShownImg ref={shownImg} src={notSvg} alt="study" title="study" />
-        </S.TodoHeaderShownImgWrap>
-      </S.TodoHeader>
-      <S.TodoInputTable>
+      <TodoHeader imgRef={shownImg} />
+      <TodoTable>
         <S.TodoInputTableRow>
           <S.TodoInputTableRowSeletedType onClick={onClickSpreadOut}>
             {selectedType}
           </S.TodoInputTableRowSeletedType>
           <S.TodoInputTableRowSeletedList className={isSpreadOut ? 'spread' : ''}>
-            {getSelectList()}
+            {getSelectList}
           </S.TodoInputTableRowSeletedList>
         </S.TodoInputTableRow>
-        <S.TodoInputTableRow>
-          <S.TodoInputTableRowInput type="text" placeholder="Thing" />
-          <S.TodoInputTableRowImg src={cancelSvg} alt="cancle" title="cancle" />
-        </S.TodoInputTableRow>
-        <S.TodoInputTableRow>
-          <S.TodoInputTableRowInput type="text" placeholder="Place" />
-          <S.TodoInputTableRowImg src={cancelSvg} alt="cancle" title="cancle" />
-        </S.TodoInputTableRow>
-        <S.TodoInputTableRow>
-          <S.TodoInputTableRowInput type="text" placeholder="Time" />
-          <S.TodoInputTableRowImg src={cancelSvg} alt="cancle" title="cancle" />
-        </S.TodoInputTableRow>
-        <S.TodoInputTableRow>
-          <S.TodoInputTableRowInput type="text" placeholder="Notification" />
-          <S.TodoInputTableRowImg src={cancelSvg} alt="cancle" title="cancle" />
-        </S.TodoInputTableRow>
-      </S.TodoInputTable>
+      </TodoTable>
       <TodoAddButton />
     </S.Todo>
   );
