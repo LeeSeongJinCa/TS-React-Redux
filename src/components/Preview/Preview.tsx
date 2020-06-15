@@ -1,6 +1,6 @@
 import React from 'react';
-import PreviewMain from '../PreviewMain/PreviewMain';
-import PreviewAside from '../PreviewAside/PreviewAside';
+import { PreviewMain, PreviewAside } from '../../components';
+import * as S from './style';
 
 interface Props {
 
@@ -8,10 +8,10 @@ interface Props {
 
 const Preview: React.FC<Props> = () => {
   return (
-    <>
+    <S.PreviewHeader>
       <PreviewMain />
       <PreviewAside />
-    </>
+    </S.PreviewHeader>
   );
 };
 

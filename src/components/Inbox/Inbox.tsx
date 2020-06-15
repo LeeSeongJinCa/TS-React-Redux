@@ -1,17 +1,12 @@
 import * as React from 'react';
 import * as S from './style';
 
-interface Props {
-  inputList: React.ReactElement;
-  inboxBottom: React.ReactElement;
-}
+interface Props {}
 
-const Inbox: React.FC<Props> = ({ inputList, inboxBottom }) => {
+const Inbox: React.FC<Props> = ({ children }) => {
   return (
     <S.Inbox>
-      <S.InboxTitle>목록</S.InboxTitle>
-      {inputList}
-      {inboxBottom}
+      {children}
     </S.Inbox>
   );
 };

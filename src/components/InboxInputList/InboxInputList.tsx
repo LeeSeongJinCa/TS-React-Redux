@@ -7,9 +7,12 @@ interface Props {
 
 const InboxInputList: React.FC<Props> = ({ inputList }) => {
   return (
-    <S.InboxInputList>
-      {inputList}
-    </S.InboxInputList>
+    <>
+      <S.InboxTitle>목록</S.InboxTitle>
+      <S.InboxInputList>
+        {inputList}
+      </S.InboxInputList>
+    </>
   );
 };
 
