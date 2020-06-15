@@ -10,6 +10,7 @@ import {
 import {
   TodoHeader,
   TodoTable,
+  TodoTableType,
   TodoAddButton,
 } from '../../components';
 
@@ -51,10 +52,6 @@ const Todo: React.FC<Props> = () => {
   const [selectedType, setSelectedType] = useState('Type');
   const shownImg: React.MutableRefObject<any> = useRef(null);
 
-  const onClickSpreadOut = () => {
-    setSpreadOut(!isSpreadOut);
-  };
-
   const onClickSelectedType = (event: any) => {
     const { type, idx } = event.target.dataset;
     const baseData = selectList[idx].base64;
@@ -80,14 +77,12 @@ const Todo: React.FC<Props> = () => {
     <S.Todo>
       <TodoHeader imgRef={shownImg} />
       <TodoTable>
-        <S.TodoInputTableRow>
-          <S.TodoInputTableRowSeletedType onClick={onClickSpreadOut}>
-            {selectedType}
-          </S.TodoInputTableRowSeletedType>
-          <S.TodoInputTableRowSeletedList className={isSpreadOut ? 'spread' : ''}>
-            {getSelectList}
-          </S.TodoInputTableRowSeletedList>
-        </S.TodoInputTableRow>
+        <TodoTableType
+          isSpreadOut={isSpreadOut}
+          selectedType={selectedType}
+          getSelectList={getSelectList}
+          setSpreadOut={setSpreadOut}
+        />
       </TodoTable>
       <TodoAddButton />
     </S.Todo>

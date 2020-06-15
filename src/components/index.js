@@ -14,6 +14,10 @@ import TodoTableRow from './TodoTableRow/TodoTableRow.tsx';
 import TodoTableRowImg from './TodoTableRowImg/TodoTableRowImg.tsx';
 import TodoTableRowInput from './TodoTableRowInput/TodoTableRowInput.tsx';
 import TodoAddButton from './TodoAddButton/TodoAddButton.tsx';
+import TodoTableType from './TodoTableType/TodoTableType.tsx';
+import TodoTableTypeInput from './TodoTableTypeInput/TodoTableTypeInput.tsx';
+import TodoTableTypeList from './TodoTableTypeList/TodoTableTypeList.tsx';
+
 
 export {
   Main,
@@ -30,5 +34,8 @@ export {
   TodoTableRow,
   TodoTableRowImg,
   TodoTableRowInput,
+  TodoTableType,
+  TodoTableTypeInput,
+  TodoTableTypeList,
   TodoAddButton,
 };
