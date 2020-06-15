@@ -8,6 +8,11 @@ import InboxInputList from './InboxInputList/InboxInputList.tsx';
 import InboxInput from './InboxInput/InboxInput.tsx';
 import InboxBottom from './InboxBottom/InboxBottom.tsx';
 import Todo from './Todo/Todo.tsx';
+import TodoHeader from './TodoHeader/TodoHeader.tsx';
+import TodoTable from './TodoTable/TodoTable.tsx';
+import TodoTableRow from './TodoTableRow/TodoTableRow.tsx';
+import TodoTableRowImg from './TodoTableRowImg/TodoTableRowImg.tsx';
+import TodoTableRowInput from './TodoTableRowInput/TodoTableRowInput.tsx';
 import TodoAddButton from './TodoAddButton/TodoAddButton.tsx';
 
 export {
@@ -20,5 +25,10 @@ export {
   InboxInputList,
   InboxBottom,
   Todo,
+  TodoHeader,
+  TodoTable,
+  TodoTableRow,
+  TodoTableRowImg,
+  TodoTableRowInput,
   TodoAddButton,
 };
