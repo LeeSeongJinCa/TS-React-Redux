@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TodoHeader } from '../../components';
 
-interface Props {
-  imgRef: React.MutableRefObject<any>;
-}
+interface Props {}
 
-const TodoHeaderContainer: React.FC<Props> = ({ imgRef }) => {
-  const [test, setTest] = useState(null);
-  return <TodoHeader imgRef={imgRef} />;
+const TodoHeaderContainer: React.FC<Props> = () => {
+  return <TodoHeader />;
 };
 
 export default TodoHeaderContainer;
