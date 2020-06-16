@@ -1,51 +1,10 @@
 import React from 'react';
 import { TodoTable } from '../../components';
 
-interface Props {
-  selectList: ISelectList[];
-  onClickSelectedType: any;
-  isSpreadOut: boolean;
-  selectedType: string;
-  setSpreadOut: any;
-}
+interface Props {}
 
-interface ISelectList {
-  type: string;
-  key: number;
-  base64: string;
-}
-
-const TodoMainContainer: React.FC<Props> = ({
-  selectList,
-  onClickSelectedType,
-  isSpreadOut,
-  selectedType,
-  setSpreadOut,
-}) => {
-  const todoInputList = [
-    {
-      type: 'text',
-      placeholder: 'Thing',
-    }, {
-      type: 'text',
-      placeholder: 'Place',
-    }, {
-      type: 'text',
-      placeholder: 'Time',
-    }, {
-      type: 'text',
-      placeholder: 'Notification',
-    },
-  ];
-
-  return (<TodoTable
-    inputs={todoInputList}
-    selectList={selectList}
-    onClickSelectedType={onClickSelectedType}
-    isSpreadOut={isSpreadOut}
-    selectedType={selectedType}
-    setSpreadOut={setSpreadOut}
-  />);
+const TodoMainContainer: React.FC<Props> = () => {
+  return <TodoTable />;
 };
 
 export default TodoMainContainer;

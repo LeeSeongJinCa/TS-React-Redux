@@ -1,12 +1,12 @@
 import React from 'react';
-import { Todo } from '../../components';
+import { TodoAddButton } from '../../components';
 
 interface Props {
 
 }
 
 const TodoAddButtonContainer: React.FC<Props> = () => {
-  return <Todo />;
+  return <TodoAddButton />;
 };
 
 export default TodoAddButtonContainer;
