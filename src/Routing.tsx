@@ -10,8 +10,8 @@ interface RoutingProps { }
 const Routing: React.StatelessComponent<RoutingProps> = () => {
   return (
     <>
-      <Route path="/" render={MainContainer} exact={true} />
-      <Route path="/todo" render={TodoContainer} />
+      <Route path="/" component={MainContainer} exact={true} />
+      <Route path="/todo" component={TodoContainer} />
     </>
   );
 };

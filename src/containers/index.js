@@ -4,6 +4,7 @@ import InboxBottomContainer from './InboxBottom/InboxBottom.tsx';
 import TodoContainer from './Todo/Todo.tsx';
 import InboxContainer from './Inbox/Inbox.tsx';
 import PreviewContainer from './Preview/Preview.tsx';
+import TodoMainContainer from './TodoMain/TodoMain.tsx';
 
 export {
   MainContainer,
@@ -12,4 +13,5 @@ export {
   TodoContainer,
   InboxContainer,
   PreviewContainer,
+  TodoMainContainer,
 };

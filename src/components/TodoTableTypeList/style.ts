@@ -4,7 +4,13 @@ import {
   globalComplementaryColor,
 } from '../../GlobalStyle';
 
-export const Todo = styled.section``;
+export const TodoInputTableRowSeletedList = styled.ul`
+  display: none;
+  padding: 0 16px;
+  &.spread {
+    display: block;
+  }
+`;
 
 export const TodoTableTypeSeletedItem = styled.li`
   padding: 4px;
