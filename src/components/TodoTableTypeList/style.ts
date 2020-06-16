@@ -12,7 +12,7 @@ export const TodoInputTableRowSeletedList = styled.ul`
   }
 `;
 
-export const TodoInputTableRowSeletedItem = styled.li`
+export const TodoTableTypeSeletedItem = styled.li`
   padding: 4px;
   color: ${globalComplementaryColor};
   transition: 0.8s;

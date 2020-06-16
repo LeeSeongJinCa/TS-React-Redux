@@ -1,30 +1,40 @@
 import React, { useMemo } from 'react';
 import * as S from './style';
-import { TodoTableRow } from '../../components';
+import {
+  TodoTableRow,
+  TodoTableType,
+} from '../../components';
 
 interface Props {
-
+  selectList: ISelectList[];
+  onClickSelectedType: any;
+  isSpreadOut: boolean;
+  selectedType: string;
+  setSpreadOut: any;
+  inputs: IInputs[];
 }
 
-const TodoTable: React.FC<Props> = ({ children }) => {
-  const input = [
-    {
-      type: 'text',
-      placeholder: 'Thing',
-    }, {
-      type: 'text',
-      placeholder: 'Place',
-    }, {
-      type: 'text',
-      placeholder: 'Time',
-    }, {
-      type: 'text',
-      placeholder: 'Notification',
-    },
-  ];
+interface IInputs {
+  type: string;
+  placeholder: string;
+}
 
+interface ISelectList {
+  type: string;
+  key: number;
+  base64: string;
+}
+
+const TodoTable: React.FC<Props> = ({
+  inputs,
+  selectList,
+  isSpreadOut,
+  setSpreadOut,
+  selectedType,
+  onClickSelectedType,
+}) => {
   const tableRows: React.ReactElement[] = useMemo(() => {
-    return input.map((row, i) =>
+    return inputs.map((row, i) =>
       <TodoTableRow
         key={i}
         type={row.type}
@@ -35,7 +45,13 @@ const TodoTable: React.FC<Props> = ({ children }) => {
 
   return (
     <S.TodoInputTable>
-      {children}
+      <TodoTableType
+        isSpreadOut={isSpreadOut}
+        selectedType={selectedType}
+        setSpreadOut={setSpreadOut}
+        onClickSelectedType={onClickSelectedType}
+        selectList={selectList}
+      />
       {tableRows}
     </S.TodoInputTable>
   );
