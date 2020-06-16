@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   notSvg,
   undoSvg,
 } from '../../assets';
 import * as S from './style';
+
 interface Props {
   imgRef: React.MutableRefObject<any>;
 }
