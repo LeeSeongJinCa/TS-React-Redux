@@ -4,37 +4,16 @@ import {
   TodoTableRow,
   TodoTableType,
 } from '../../components';
+import {
+  todoInputList,
+  IInputs,
+} from '../../static/todoForm';
 
-interface Props {
-  selectList: ISelectList[];
-  onClickSelectedType: any;
-  isSpreadOut: boolean;
-  selectedType: string;
-  setSpreadOut: any;
-  inputs: IInputs[];
-}
+interface Props {}
 
-interface IInputs {
-  type: string;
-  placeholder: string;
-}
-
-interface ISelectList {
-  type: string;
-  key: number;
-  base64: string;
-}
-
-const TodoTable: React.FC<Props> = ({
-  inputs,
-  selectList,
-  isSpreadOut,
-  setSpreadOut,
-  selectedType,
-  onClickSelectedType,
-}) => {
+const TodoTable: React.FC<Props> = () => {
   const tableRows: React.ReactElement[] = useMemo(() => {
-    return inputs.map((row, i) =>
+    return todoInputList.map((row: IInputs, i) =>
       <TodoTableRow
         key={i}
         type={row.type}
@@ -45,13 +24,7 @@ const TodoTable: React.FC<Props> = ({
 
   return (
     <S.TodoInputTable>
-      <TodoTableType
-        isSpreadOut={isSpreadOut}
-        selectedType={selectedType}
-        setSpreadOut={setSpreadOut}
-        onClickSelectedType={onClickSelectedType}
-        selectList={selectList}
-      />
+      <TodoTableType />
       {tableRows}
     </S.TodoInputTable>
   );

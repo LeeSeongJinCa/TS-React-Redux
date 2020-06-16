@@ -19,3 +19,11 @@ export const TodoTableTypeSeletedItem = styled.li`
   cursor: pointer;
   &:hover { color: ${globalButtonColor}; }
 `;
+
+export const TodoTableTypeIcon = styled.img`
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 35px;
+  transform: translateY(-50%);
+`;

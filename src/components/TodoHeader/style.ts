@@ -24,17 +24,3 @@ export const TodoHeaderNavTiitle = styled.h2`
   margin: auto;
   color: white;
 `;
-
-export const TodoHeaderShownImgWrap = styled.div`
-  width: 64px;
-  height: 64px;
-  margin: 24px auto;
-  padding: 8px;
-  border: 1px solid ${globalComplementaryBackColor};
-  border-radius: 50%;
-`;
-
-export const TodoHeaderShownImg = styled.img`
-  width: 100%;
-  height: 100%;
-`;
