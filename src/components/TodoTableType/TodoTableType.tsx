@@ -1,31 +1,29 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import {
   TodoTableTypeInput,
   TodoTableTypeList,
 } from '../../components';
 import * as S from '../TodoTableRow/style';
-
-interface Props {
-  selectList: ISelectList[];
-  onClickSelectedType: any;
-  isSpreadOut: boolean;
-  selectedType: string;
-  setSpreadOut: any;
-}
-
-interface ISelectList {
-  type: string;
-  key: number;
-  base64: string;
-}
-
-const TodoTableType: React.FC<Props> = ({
-  isSpreadOut,
-  selectedType,
-  onClickSelectedType,
-  setSpreadOut,
+import {
   selectList,
-}) => {
+} from '../../static/selectForm';
+
+interface Props {}
+
+const TodoTableType: React.FC<Props> = () => {
+  const [isSpreadOut, setSpreadOut] = useState(false);
+  const [selectedType, setSelectedType] = useState('Type');
+  const shownImg: React.MutableRefObject<any> = useRef(null);
+
+  const onClickSelectedType = (event: any) => {
+    console.log(selectList);
+    const { type, idx } = event.target.dataset;
+    const baseData = selectList[idx].base64;
+    setSelectedType(type);
+    setSpreadOut(false);
+    shownImg.current.src = baseData;
+  };
+
   return (
     <S.TodoInputTableRow>
       <TodoTableTypeInput
@@ -36,7 +34,7 @@ const TodoTableType: React.FC<Props> = ({
       <TodoTableTypeList
         isSpreadOut={isSpreadOut}
         onClickSelectedType={onClickSelectedType}
-        selectList={selectList}
+        shownImg={shownImg}
       />
     </S.TodoInputTableRow>
   );
