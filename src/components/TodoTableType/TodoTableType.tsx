@@ -6,17 +6,25 @@ import {
 import * as S from '../TodoTableRow/style';
 
 interface Props {
-  isSpreadOut: any;
-  selectedType: any;
-  getSelectList: any;
+  selectList: ISelectList[];
+  onClickSelectedType: any;
+  isSpreadOut: boolean;
+  selectedType: string;
   setSpreadOut: any;
+}
+
+interface ISelectList {
+  type: string;
+  key: number;
+  base64: string;
 }
 
 const TodoTableType: React.FC<Props> = ({
   isSpreadOut,
   selectedType,
-  getSelectList,
+  onClickSelectedType,
   setSpreadOut,
+  selectList,
 }) => {
   return (
     <S.TodoInputTableRow>
@@ -27,7 +35,8 @@ const TodoTableType: React.FC<Props> = ({
       />
       <TodoTableTypeList
         isSpreadOut={isSpreadOut}
-        getSelectList={getSelectList}
+        onClickSelectedType={onClickSelectedType}
+        selectList={selectList}
       />
     </S.TodoInputTableRow>
   );
