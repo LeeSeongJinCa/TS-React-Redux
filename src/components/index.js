@@ -18,7 +18,6 @@ import TodoTableType from './TodoTableType/TodoTableType.tsx';
 import TodoTableTypeInput from './TodoTableTypeInput/TodoTableTypeInput.tsx';
 import TodoTableTypeList from './TodoTableTypeList/TodoTableTypeList.tsx';
 
-
 export {
   Main,
   PreviewMain,
