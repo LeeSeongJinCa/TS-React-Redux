@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { AnyStyledComponent, StyledComponent } from 'styled-components';
 import {
   globalButtonColor,
   globalColor,
@@ -27,15 +27,20 @@ export const InboxInputImg = styled.img`
 `;
 
 export const InboxInputInfo = styled.div`
-  width: 80%;
-  h3, p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  width: 400px;
 `;
+
+const returnStyleComp = (el, style: string) => styled(el)`${style}`;
+
+const InboxInputInfoTextsStyle = `
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const InboxInputInfoTextH3 = returnStyleComp('h3', InboxInputInfoTextsStyle);
+export const InboxInputInfoTextP = returnStyleComp('p', InboxInputInfoTextsStyle);
 
 export const InboxInputUntil = styled.div`
   text-align: center;
-  width: 10%;
 `;

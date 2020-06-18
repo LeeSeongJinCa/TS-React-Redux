@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
-import { InboxInput, InboxInputList } from '../../components';
+import React, { ReactElement } from 'react';
+import { InboxInputList } from '../../components';
 
 interface Props {
-
+  inputList: ReactElement[];
 }
 
 interface IInputs {
@@ -11,41 +11,7 @@ interface IInputs {
   until: string;
 }
 
-const InboxInputListContainer: React.FC<Props> = () => {
-  const inputs: IInputs[] = [
-    {
-      title: 'title',
-      subTitle: 'subTitle',
-      until: 'until',
-    }, {
-      title: 'title',
-      subTitle: 'subTitle',
-      until: 'until',
-    }, {
-      title: 'title',
-      subTitle: 'subTitle',
-      until: 'until',
-    }, {
-      title: 'title',
-      subTitle: 'subTitle',
-      until: 'until',
-    }, {
-      title: 'title',
-      subTitle: 'subTitle',
-      until: 'until',
-    },
-  ];
-
-  const inputList: React.ReactElement[] = useMemo(() => inputs.map((input, i) => {
-    return (<InboxInput
-      key={i}
-      title={input.title}
-      subTitle={input.subTitle}
-      until={input.until}
-    />);
-  },
-  ), []);
-
+const InboxInputListContainer: React.FC<Props> = ({ inputList }) => {
   return <InboxInputList inputList={inputList} />;
 };
 

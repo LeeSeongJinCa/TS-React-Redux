@@ -9,6 +9,7 @@ import notSvg from './icon/notInterested.svg';
 import openFull from './icon/openFull.svg';
 import arrowSvg from './icon/arrow.svg';
 import plusSvg from './icon/plus.svg';
+import addTodoSvg from './icon/addTodo.svg';
 
 export {
   undoSvg,
@@ -22,4 +23,5 @@ export {
   openFull,
   arrowSvg,
   plusSvg,
+  addTodoSvg,
 };

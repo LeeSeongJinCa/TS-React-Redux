@@ -1,5 +1,5 @@
-import React from 'react';
-import { Main, Preview } from '../../components';
+import React, { useEffect } from 'react';
+import { Main } from '../../components';
 import { InboxContainer, PreviewContainer } from '../../containers';
 
 interface Props {}

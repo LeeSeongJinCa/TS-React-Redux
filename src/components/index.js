@@ -6,6 +6,7 @@ import PreviewAside from './PreviewAside/PreviewAside.tsx';
 import Inbox from './Inbox/Inbox.tsx';
 import InboxInputList from './InboxInputList/InboxInputList.tsx';
 import InboxInput from './InboxInput/InboxInput.tsx';
+import InboxNoList from './InboxNoList/InboxNoList.tsx';
 import InboxBottom from './InboxBottom/InboxBottom.tsx';
 import Todo from './Todo/Todo.tsx';
 import TodoHeader from './TodoHeader/TodoHeader.tsx';
@@ -26,6 +27,7 @@ export {
   Inbox,
   InboxInput,
   InboxInputList,
+  InboxNoList,
   InboxBottom,
   Todo,
   TodoHeader,
