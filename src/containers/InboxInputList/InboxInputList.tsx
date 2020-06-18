@@ -1,9 +1,9 @@
-import React, { useMemo, useEffect, useState } from 'react';
-import { InboxInput, InboxInputList } from '../../components';
-import { URL } from '../../static/server';
-import axios from 'axios';
+import React, { ReactElement } from 'react';
+import { InboxInputList } from '../../components';
 
-interface Props {}
+interface Props {
+  inputList: ReactElement[];
+}
 
 interface IInputs {
   title: string;
@@ -11,25 +11,7 @@ interface IInputs {
   until: string;
 }
 
-const InboxInputListContainer: React.FC<Props> = () => {
-  const [inputs, setInputs] = useState([]);
-
-  const inputList: React.ReactElement[] = useMemo(() => inputs.map((input: IInputs, i) => {
-    return (<InboxInput
-      key={i}
-      title={input.title}
-      subTitle={input.subTitle}
-      until={input.until}
-    />);
-  },
-  ), [inputs]);
-
-  useEffect(() => {
-    axios.get(URL).then((data) => {
-      setInputs(data.data.inbox);
-    })
-  }, []);
-
+const InboxInputListContainer: React.FC<Props> = ({ inputList }) => {
   return <InboxInputList inputList={inputList} />;
 };
 

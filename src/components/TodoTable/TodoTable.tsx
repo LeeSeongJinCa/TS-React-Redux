@@ -8,6 +8,7 @@ import {
   todoInputList,
   IInputs,
 } from '../../static/todoForm';
+import axios from 'axios';
 
 interface Props {}
 
@@ -17,13 +18,19 @@ const TodoTable: React.FC<Props> = () => {
       <TodoTableRow
         key={i}
         type={row.type}
-        placeholder={row.placeholder}
+        placeholder={row.id}
+        data-id={row.id}
       />,
     );
   }, []);
 
+  const onClickTest = () => {
+
+  };
+
   return (
     <S.TodoInputTable>
+      <div>testclick</div>
       <TodoTableType />
       {tableRows}
     </S.TodoInputTable>

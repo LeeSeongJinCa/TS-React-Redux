@@ -12,11 +12,10 @@ interface Props {}
 
 const TodoTableType: React.FC<Props> = () => {
   const [isSpreadOut, setSpreadOut] = useState(false);
-  const [selectedType, setSelectedType] = useState('Type');
+  const [selectedType, setSelectedType] = useState('not');
   const shownImg: React.MutableRefObject<any> = useRef(null);
 
   const onClickSelectedType = (event: any) => {
-    console.log(selectList);
     const { type, idx } = event.target.dataset;
     const baseData = selectList[idx].base64;
     setSelectedType(type);

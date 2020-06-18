@@ -1,20 +1,24 @@
 export interface IInputs {
   type: string;
-  placeholder: string;
+  id: string;
+}
+
+export interface IInputsType {
+  type: string;
+  thing: string;
+  time: number;
+  notification: string;
 }
 
 export const todoInputList: IInputs[] = [
   {
     type: 'text',
-    placeholder: 'Thing',
+    id: 'thing',
   }, {
     type: 'text',
-    placeholder: 'Place',
+    id: 'time',
   }, {
     type: 'text',
-    placeholder: 'Time',
-  }, {
-    type: 'text',
-    placeholder: 'Notification',
+    id: 'notification',
   },
 ];

@@ -1,13 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { InboxBottom } from '../../components';
 
-interface Props { }
+interface Props {
+  inputLen: string;
+}
 
-const InboxBottomContainer: React.FC<Props> = () => {
-  const completed: React.MutableRefObject<number> = useRef(3);
-
+const InboxBottomContainer: React.FC<Props> = ({ inputLen }) => {
   return (
-    <InboxBottom completed={completed} />
+    <InboxBottom inputLen={inputLen} />
   );
 };
 
