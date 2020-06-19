@@ -21,12 +21,13 @@ const TodoTable: React.FC<Props> = ({
   todoDispatch,
 }) => {
   const tableRows: React.ReactElement[] = useMemo(() => {
-    return todoInputList.map((row: IInputs, i) =>
+    return todoInputList.map(({ id }: IInputs, i) =>
       <TodoTableRow
-        key={i}
-        type={row.type}
-        placeholder={row.id}
-        data-id={row.id}
+        key={id}
+        type="text"
+        id={id}
+        todoState={todoState}
+        todoDispatch={todoDispatch}
       />,
     );
   }, []);
@@ -38,6 +39,9 @@ const TodoTable: React.FC<Props> = ({
         todoDispatch={todoDispatch}
       />
       {tableRows}
+      <input type="date" name="date" id="date" /> {/* "2020-06-20" */}
+      <input type="time" name="time" id="time" /> {/* "22:41" */}
+      {/* new Date(`${d} ${t}`); */}
     </S.TodoInputTable>
   );
 };

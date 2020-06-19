@@ -2,6 +2,7 @@ import React, {
   useState,
   useRef,
   Dispatch,
+  MouseEvent,
 } from 'react';
 import {
   TodoTableTypeInput,
@@ -27,8 +28,8 @@ const TodoTableType: React.FC<Props> = ({
   const [isSpreadOut, setSpreadOut] = useState(false);
   const shownImg: React.MutableRefObject<any> = useRef(null);
 
-  const onClickSelectedType = (event: any) => {
-    const { type, idx } = event.target.dataset;
+  const onClickSelectedType = (event: MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const { type, idx } = event.currentTarget.dataset;
     const baseData = selectList[idx].base64;
     todoDispatch({ type: 'typing', typing: type });
     setSpreadOut(false);
