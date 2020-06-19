@@ -1,13 +1,37 @@
-import React from 'react';
+import React, {
+  Dispatch,
+  MouseEvent,
+} from 'react';
 import * as S from './style';
+import {
+  IInputsType,
+} from '../../static/todoForm';
 import {
   cancelSvg,
 } from '../../assets';
 
-interface Props { }
+interface Props {
+  id: string;
+  todoDispatch: Dispatch<IInputsType>;
+}
 
-const TodoTableRowImg: React.FC<Props> = () => {
-  return <S.TodoInputTableRowImg src={cancelSvg} alt="cancle" title="cancle" />;
+const TodoTableRowImg: React.FC<Props> = ({
+  id,
+  todoDispatch,
+}) => {
+  const onClickCancel = () => {
+    console.log(id);
+    todoDispatch({ type: id, [id]: '' });
+  };
+
+  return (
+    <S.TodoInputTableRowImg
+      src={cancelSvg}
+      alt="cancle"
+      title="cancle"
+      onClick={onClickCancel}
+    />
+  );
 };
 
 export default TodoTableRowImg;

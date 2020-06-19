@@ -18,12 +18,12 @@ const TodoTableTypeList: React.FC<Props> = ({
   shownImg,
 }) => {
   const getSelectList: React.ReactElement[] = useMemo(() => {
-    return selectList.map((item: ISelectList) =>
+    return selectList.map((item: ISelectList, key: number) =>
       <S.TodoTableTypeSeletedItem
-        key={item.key}
+        key={key}
         onClick={onClickSelectedType}
         data-type={item.type}
-        data-idx={item.key - 1}
+        data-idx={key}
       >{item.type}</S.TodoTableTypeSeletedItem>,
     );
   },

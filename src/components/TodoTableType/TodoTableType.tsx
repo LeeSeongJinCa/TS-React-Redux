@@ -1,4 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, {
+  useState,
+  useRef,
+  Dispatch,
+  MouseEvent,
+} from 'react';
 import {
   TodoTableTypeInput,
   TodoTableTypeList,
@@ -7,18 +12,26 @@ import * as S from '../TodoTableRow/style';
 import {
   selectList,
 } from '../../static/selectForm';
+import {
+  IInputsType,
+} from '../../static/todoForm';
 
-interface Props {}
+interface Props {
+  todoState: IInputsType;
+  todoDispatch: Dispatch<IInputsType>;
+}
 
-const TodoTableType: React.FC<Props> = () => {
+const TodoTableType: React.FC<Props> = ({
+  todoState,
+  todoDispatch,
+}) => {
   const [isSpreadOut, setSpreadOut] = useState(false);
-  const [selectedType, setSelectedType] = useState('not');
   const shownImg: React.MutableRefObject<any> = useRef(null);
 
-  const onClickSelectedType = (event: any) => {
-    const { type, idx } = event.target.dataset;
+  const onClickSelectedType = (event: MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const { type, idx } = event.currentTarget.dataset;
     const baseData = selectList[idx].base64;
-    setSelectedType(type);
+    todoDispatch({ type: 'typing', typing: type });
     setSpreadOut(false);
     shownImg.current.src = baseData;
   };
@@ -27,7 +40,7 @@ const TodoTableType: React.FC<Props> = () => {
     <S.TodoInputTableRow>
       <TodoTableTypeInput
         isSpreadOut={isSpreadOut}
-        selectedType={selectedType}
+        todoState={todoState}
         setSpreadOut={setSpreadOut}
       />
       <TodoTableTypeList
