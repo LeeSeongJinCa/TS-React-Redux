@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, Dispatch } from 'react';
 import * as S from './style';
 import {
   TodoTableRow,
@@ -7,12 +7,19 @@ import {
 import {
   todoInputList,
   IInputs,
+  IInputsType,
 } from '../../static/todoForm';
 import axios from 'axios';
 
-interface Props {}
+interface Props {
+  todoState: IInputsType;
+  todoDispatch: Dispatch<IInputsType>;
+}
 
-const TodoTable: React.FC<Props> = () => {
+const TodoTable: React.FC<Props> = ({
+  todoState,
+  todoDispatch,
+}) => {
   const tableRows: React.ReactElement[] = useMemo(() => {
     return todoInputList.map((row: IInputs, i) =>
       <TodoTableRow
@@ -24,14 +31,12 @@ const TodoTable: React.FC<Props> = () => {
     );
   }, []);
 
-  const onClickTest = () => {
-
-  };
-
   return (
     <S.TodoInputTable>
-      <div>testclick</div>
-      <TodoTableType />
+      <TodoTableType
+        todoState={todoState}
+        todoDispatch={todoDispatch}
+      />
       {tableRows}
     </S.TodoInputTable>
   );
