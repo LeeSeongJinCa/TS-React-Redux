@@ -5,9 +5,10 @@ export interface IInputs {
 
 export interface IInputsType {
   type: string;
-  thing: string;
-  time: number;
-  notification: string;
+  typing?: string;
+  thing?: string;
+  time?: number;
+  notification?: string;
 }
 
 export const todoInputList: IInputs[] = [
