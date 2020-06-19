@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, Dispatch } from 'react';
 import * as S from './style';
 import {
   TodoTableRow,
@@ -7,32 +7,41 @@ import {
 import {
   todoInputList,
   IInputs,
+  IInputsType,
 } from '../../static/todoForm';
 import axios from 'axios';
 
-interface Props {}
+interface Props {
+  todoState: IInputsType;
+  todoDispatch: Dispatch<IInputsType>;
+}
 
-const TodoTable: React.FC<Props> = () => {
+const TodoTable: React.FC<Props> = ({
+  todoState,
+  todoDispatch,
+}) => {
   const tableRows: React.ReactElement[] = useMemo(() => {
-    return todoInputList.map((row: IInputs, i) =>
+    return todoInputList.map(({ id }: IInputs, i) =>
       <TodoTableRow
-        key={i}
-        type={row.type}
-        placeholder={row.id}
-        data-id={row.id}
+        key={id}
+        type="text"
+        id={id}
+        todoState={todoState}
+        todoDispatch={todoDispatch}
       />,
     );
   }, []);
 
-  const onClickTest = () => {
-
-  };
-
   return (
     <S.TodoInputTable>
-      <div>testclick</div>
-      <TodoTableType />
+      <TodoTableType
+        todoState={todoState}
+        todoDispatch={todoDispatch}
+      />
       {tableRows}
+      <input type="date" name="date" id="date" /> {/* "2020-06-20" */}
+      <input type="time" name="time" id="time" /> {/* "22:41" */}
+      {/* new Date(`${d} ${t}`); */}
     </S.TodoInputTable>
   );
 };
