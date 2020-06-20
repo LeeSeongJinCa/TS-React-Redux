@@ -14,8 +14,6 @@ export const todoInputList: IInputs[] = [
   {
     id: 'thing',
   }, {
-    id: 'time',
-  }, {
     id: 'notification',
   },
 ];
