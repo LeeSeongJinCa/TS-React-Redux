@@ -1,4 +1,3 @@
-// import ModalButton from "./Modals/ModalButton/ModalButton.tsx";
 import Main from './Main/Main.tsx';
 import Preview from './Preview/Preview.tsx';
 import PreviewMain from './PreviewMain/PreviewMain.tsx';
@@ -18,6 +17,9 @@ import TodoAddButton from './TodoAddButton/TodoAddButton.tsx';
 import TodoTableType from './TodoTableType/TodoTableType.tsx';
 import TodoTableTypeInput from './TodoTableTypeInput/TodoTableTypeInput.tsx';
 import TodoTableTypeList from './TodoTableTypeList/TodoTableTypeList.tsx';
+import TodoCalendar from './TodoCalendar/TodoCalendar.tsx';
+import TodoCalendarDay from './TodoCalendarDay/TodoCalendarDay.tsx';
+import TodoCalendarDate from './TodoCalendarDate/TodoCalendarDate.tsx';
 
 export {
   Main,
@@ -39,4 +41,7 @@ export {
   TodoTableTypeInput,
   TodoTableTypeList,
   TodoAddButton,
+  TodoCalendar,
+  TodoCalendarDay,
+  TodoCalendarDate,
 };
