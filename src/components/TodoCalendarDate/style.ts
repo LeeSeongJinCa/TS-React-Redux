@@ -12,17 +12,10 @@ export const CalendarDay = styled.div`
   border-radius: 5px;
   font-weight: bold;
   font-size: 16px;
-  &.by {
-    border-bottom: 4px solid red;
-    border-radius: 0;
-    background-color: #ffc5c5;
-  }
-  &.month {
-    background-color: #BBFFC9;
-  }
-  &.week {
-    background-color: #FFFFBB;
-  }
+  transition: 0.3s;
+  cursor: pointer;
+  &.month { background-color: #BBFFC9; }
+  &.week  { background-color: #FFFFBB; }
   &.today {
     position: relative;
     background-color: #FFE0BB;
@@ -37,6 +30,9 @@ export const CalendarDay = styled.div`
     border-radius: 50%;
     background-color: #ff0000;
   }
+  &.month:hover { background-color: #44ff6b; }
+  &.week:hover  { background-color: #ffff5c; }
+  &.today:hover { background-color: #ffa73e; }
 `;
 
 export const CalendarDaySpan = styled.span``;
