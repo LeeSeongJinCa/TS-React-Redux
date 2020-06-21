@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import * as S from './style';
 import {
   TodoCalendarDay,
   TodoCalendarDate,
 } from '../../components';
+import { IInputsType } from '../../static/todoForm';
 
-interface Props {}
+interface Props {
+  todoDispatch: Dispatch<IInputsType>;
+}
 
-const TodoCalendar: React.FC<Props> = () => {
+const TodoCalendar: React.FC<Props> = ({
+  todoDispatch,
+}) => {
   return (
     <S.Calendar>
       <TodoCalendarDay />
-      <TodoCalendarDate />
+      <TodoCalendarDate todoDispatch={todoDispatch} />
     </S.Calendar>
   );
 };
