@@ -42,7 +42,7 @@ const TodoTable: React.FC<Props> = ({
         todoDispatch={todoDispatch}
       />
       {tableRows}
-      <TodoCalendar />
+      <TodoCalendar todoDispatch={todoDispatch} />
     </S.TodoInputTable>
   );
 };
