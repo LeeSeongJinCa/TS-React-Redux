@@ -8,7 +8,7 @@ const todoInitialState: IInputsType = {
   type: '',
   typing: 'not',
   thing: '',
-  time: '',
+  time: 0,
   notification: '',
 };
 
