@@ -6,15 +6,13 @@ export interface IInputsType {
   type: string;
   typing?: string;
   thing?: string;
-  time?: string;
+  time?: number;
   notification?: string;
 }
 
 export const todoInputList: IInputs[] = [
   {
     id: 'thing',
-  }, {
-    id: 'time',
   }, {
     id: 'notification',
   },

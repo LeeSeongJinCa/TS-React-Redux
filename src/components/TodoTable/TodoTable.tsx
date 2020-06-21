@@ -1,15 +1,18 @@
-import React, { useMemo, Dispatch } from 'react';
+import React, {
+  useMemo,
+  Dispatch,
+} from 'react';
 import * as S from './style';
 import {
   TodoTableRow,
   TodoTableType,
+  TodoCalendar,
 } from '../../components';
 import {
   todoInputList,
   IInputs,
   IInputsType,
 } from '../../static/todoForm';
-import axios from 'axios';
 
 interface Props {
   todoState: IInputsType;
@@ -39,9 +42,7 @@ const TodoTable: React.FC<Props> = ({
         todoDispatch={todoDispatch}
       />
       {tableRows}
-      <input type="date" name="date" id="date" /> {/* "2020-06-20" */}
-      <input type="time" name="time" id="time" /> {/* "22:41" */}
-      {/* new Date(`${d} ${t}`); */}
+      <TodoCalendar todoDispatch={todoDispatch} />
     </S.TodoInputTable>
   );
 };

@@ -29,7 +29,8 @@
         "react": "React"
       }
     ],
-    "no-console": false
+    "no-console": false,
+    "one-variable-per-declaration": false
   },
   "rulesDirectory": []
 }
