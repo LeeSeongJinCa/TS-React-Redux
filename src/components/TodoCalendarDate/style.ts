@@ -30,16 +30,23 @@ export const CalendarDay = styled.div`
     border-radius: 50%;
     background-color: #ff0000;
   }
+  /*
+  ::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff0000;
+  }
+  */
   &.month:hover { background-color: #44ff6b; }
   &.week:hover  { background-color: #ffff5c; }
   &.today:hover { background-color: #ffa73e; }
-  #calendar {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 50px;
-    /* width: 1000px;
-    margin: 50px auto; */
-  }
+
   #calendar_show {
     position: relative;
     width: 100%;
@@ -66,7 +73,7 @@ export const CalendarDay = styled.div`
     text-align: center;
     font-weight: bold;
     font-size: 16px;
-    box-shadow: 
+    box-shadow:
       0.5px 0 0 0 #888,
       0 0.5px 0 0 #888,
       0.5px 0.5px 0 0 #888,
@@ -87,29 +94,6 @@ export const CalendarDay = styled.div`
     border-radius: 0;
     background-color: #ffc5c5;
   }
-  .month {
-    background-color: #BBFFC9;
-  }
-  .week {
-    background-color: #FFFFBB;
-  }
-  .today {
-    background-color: #FFE0BB;
-  }
-  .today > span {
-    position: relative;
-  }
-  .today > span::before {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #ff0000;
-  }
 
   .cal_line {
     height: 20px;
@@ -118,9 +102,9 @@ export const CalendarDay = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    cursor: pointer;
     color: white;
     box-sizing: border-box;
+    cursor: pointer;
   }
   .cal_line_start {
     border-radius: 4px 0 0 4px;

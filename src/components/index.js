@@ -20,6 +20,7 @@ import TodoTableTypeList from './TodoTableTypeList/TodoTableTypeList.tsx';
 import TodoCalendar from './TodoCalendar/TodoCalendar.tsx';
 import TodoCalendarDay from './TodoCalendarDay/TodoCalendarDay.tsx';
 import TodoCalendarDate from './TodoCalendarDate/TodoCalendarDate.tsx';
+import TodoCalendarSetting from './TodoCalendarSetting/TodoCalendarSetting.tsx';
 
 export {
   Main,
@@ -44,4 +45,5 @@ export {
   TodoCalendar,
   TodoCalendarDay,
   TodoCalendarDate,
+  TodoCalendarSetting,
 };

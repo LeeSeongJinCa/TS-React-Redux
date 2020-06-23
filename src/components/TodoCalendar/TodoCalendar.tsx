@@ -3,6 +3,7 @@ import * as S from './style';
 import {
   TodoCalendarDay,
   TodoCalendarDate,
+  TodoCalendarSetting,
 } from '../../components';
 import { IInputsType } from '../../static/todoForm';
 
@@ -14,10 +15,13 @@ const TodoCalendar: React.FC<Props> = ({
   todoDispatch,
 }) => {
   return (
-    <S.Calendar>
-      <TodoCalendarDay />
-      <TodoCalendarDate todoDispatch={todoDispatch} />
-    </S.Calendar>
+    <>
+      <TodoCalendarSetting todoDispatch={todoDispatch} />
+      <S.Calendar>
+        <TodoCalendarDay />
+        <TodoCalendarDate todoDispatch={todoDispatch} />
+      </S.Calendar>
+    </>
   );
 };
 
