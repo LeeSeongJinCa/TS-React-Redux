@@ -30,70 +30,9 @@ export const CalendarDay = styled.div`
     border-radius: 50%;
     background-color: #ff0000;
   }
-  /*
-  ::before {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #ff0000;
-  }
-  */
   &.month:hover { background-color: #44ff6b; }
   &.week:hover  { background-color: #ffff5c; }
   &.today:hover { background-color: #ffa73e; }
-
-  #calendar_show {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  #calendar_show_date {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-  }
-  #calendar_show_lines {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-  }
-  .calendar__day {
-    height: 62.6px;
-    width: calc(100% / 7);
-    box-sizing: border-box;
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
-    box-shadow:
-      0.5px 0 0 0 #888,
-      0 0.5px 0 0 #888,
-      0.5px 0.5px 0 0 #888,
-      0.5px 0 0 0 #888 inset,
-      0 0.5px 0 0 #888 inset;
-  }
-  .calendar__day.month:hover {
-    background-color: #BBFF10;
-  }
-  .calendar__day.today:hover {
-    background-color: #FFA0AA;
-  }
-  .calendar__day_by {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 4px solid red;
-    border-radius: 0;
-    background-color: #ffc5c5;
-  }
 
   .cal_line {
     height: 20px;
