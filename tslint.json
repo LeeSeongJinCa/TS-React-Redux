@@ -26,7 +26,8 @@
         "fp": "_",
         "styledComponents": "styled",
         "reactDom": "ReactDom",
-        "react": "React"
+        "react": "React",
+        "reduxThunk": "ReduxThunk"
       }
     ],
     "no-console": false,
