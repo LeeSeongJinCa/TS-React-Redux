@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import counter, { CounterState } from './counter';
+import schedule, { ScheduleState } from './schedule';
 
 export interface StoreState {
-  counter: CounterState;
+  schedule: ScheduleState;
 }
 
-export default combineReducers<StoreState>({ counter });
+export default combineReducers<StoreState>({ schedule });
