@@ -6,7 +6,7 @@ import * as S from './style';
 import {
   TodoTableRow,
   TodoTableType,
-  TodoCalendar,
+  Calendar,
 } from '../../components';
 import {
   todoInputList,
@@ -42,7 +42,6 @@ const TodoTable: React.FC<Props> = ({
         todoDispatch={todoDispatch}
       />
       {tableRows}
-      <TodoCalendar todoDispatch={todoDispatch} />
     </S.TodoInputTable>
   );
 };
