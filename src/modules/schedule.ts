@@ -28,7 +28,7 @@ const initialState: ScheduleState = {
   endDate: '',
 };
 
-export const setScheduleThunk: ActionCreator<ThunkAction<
+export const setSchedule: ActionCreator<ThunkAction<
   ScheduleAction,
   ScheduleState,
   void,
@@ -38,7 +38,6 @@ export const setScheduleThunk: ActionCreator<ThunkAction<
 };
 
 const schedule = (state = initialState, action: ScheduleAction): ScheduleState => {
-  console.log(action);
   switch (action.type) {
     case STARTDATE:
       return {
