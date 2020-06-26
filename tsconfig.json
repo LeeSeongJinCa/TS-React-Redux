@@ -14,7 +14,7 @@
     ]
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*", "src/actions/ActionTypes.ts"
   ],
   "exclude": [
     "./node_modules"
