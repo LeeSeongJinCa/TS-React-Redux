@@ -1,5 +1,6 @@
-import React, { useReducer, Dispatch, useEffect } from 'react';
+import React, { useReducer, Dispatch } from 'react';
 import { TodoTable } from '../../components';
+import { CalendarContainer } from '../../containers';
 import { IInputsType } from '../../static/todoForm';
 
 interface Props {}
@@ -28,17 +29,16 @@ const todoInputReducer = (state: IInputsType, action: any) => {
 };
 
 const TodoMainContainer: React.FC<Props> = () => {
-  const [todoState, todoDispatch]:
-    [IInputsType, Dispatch<IInputsType>] = useReducer(
-    todoInputReducer,
-    todoInitialState,
-  );
+  const [todoState, todoDispatch]: [
+    IInputsType,
+    Dispatch<IInputsType>,
+  ] = useReducer(todoInputReducer, todoInitialState);
 
   return (
-    <TodoTable
-      todoState={todoState}
-      todoDispatch={todoDispatch}
-    />
+    <>
+      <TodoTable todoState={todoState} todoDispatch={todoDispatch} />
+      <CalendarContainer />
+    </>
   );
 };
 
