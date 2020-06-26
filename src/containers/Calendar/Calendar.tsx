@@ -1,28 +1,28 @@
-import React from 'react';
-import * as actions from '../../modules/counter';
+import React, { MouseEvent } from 'react';
+import {
+  setStartDate,
+  setEndDate,
+  setScheduleThunk,
+} from '../../modules/schedule';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../../modules';
 import { Calendar } from '../../components';
 
 const CalendarContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const counter = useSelector((state: StoreState) => state.counter);
+  const schedule = useSelector((state: StoreState) => state.schedule);
 
-  const setCounterNumber = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { type } = e.currentTarget.dataset;
-    switch (type) {
-      case actions.INCREMENT:
-        dispatch(actions.setCounterThunk(1, actions.setCounterIn));
-        break;
-      case actions.DECREMENT:
-        dispatch(actions.setCounterThunk(-1, actions.setCounterDe));
-        break;
-      default:
-        break;
+  const setSchedule = (e: MouseEvent<HTMLDivElement>) => {
+    const { id } = e.currentTarget.dataset;
+
+    if (schedule.startDate === '') {
+      dispatch(setScheduleThunk(id, setStartDate));
+    } else {
+      dispatch(setScheduleThunk(id, setEndDate));
     }
   };
 
-  return <Calendar count={counter.number} setCounterNumber={setCounterNumber} />;
+  return <Calendar schedule={schedule} setSchedule={setSchedule} />;
 };
 
 export default CalendarContainer;
