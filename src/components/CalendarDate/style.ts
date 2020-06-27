@@ -1,43 +1,24 @@
 import styled from 'styled-components';
 import { CalendarDTemp } from '../Calendar/style';
+import { globalButtonColor, globalColor, globalComplementaryColor } from '../../GlobalStyle';
 
 export const CalendarDate = styled(CalendarDTemp)`
-  border-radius: 5px;
+  border-radius: 50%;
   transition: 0.3s;
+  color: ${globalColor};
   cursor: pointer;
-  &.month {
-    background-color: #bbffc9;
+  &.prev {
+    color: ${globalComplementaryColor};
+    cursor: default;
   }
-  &.week {
-    background-color: #ffffbb;
-  }
-  &.today {
-    position: relative;
-    background-color: #ffe0bb;
+  &.between {
+    color: white;
+    background-color: #8d8d8d;
   }
   &.selected {
-    background-color: #3b5bdb;
+    background-color: ${globalButtonColor};
+    color: white;
   }
-  &.today::before {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #ff0000;
-  }
-  &.month:hover {
-    background-color: #44ff6b;
-  }
-  &.week:hover {
-    background-color: #ffff5c;
-  }
-  &.today:hover {
-    background-color: #ffa73e;
-  }
-
   .cal_line {
     height: 20px;
     padding-left: 8px;

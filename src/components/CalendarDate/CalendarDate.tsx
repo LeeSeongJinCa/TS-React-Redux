@@ -1,5 +1,7 @@
 import React, { MouseEvent, ReactElement, useMemo } from 'react';
 import * as S from './style';
+import { useSelector } from 'react-redux';
+import { StoreState } from '../../modules';
 
 interface Props {
   today: Date;
@@ -7,74 +9,63 @@ interface Props {
 }
 
 const CalendarDate: React.FC<Props> = ({ today, setSchedule }) => {
-  const testEl = (e: MouseEvent<HTMLDivElement>) => {
+  const { startDate, endDate } = useSelector((state: StoreState) => state.schedule);
+
+  const isIdBefore = (id: string): boolean => {
+    const startTime: number = new Date(startDate).getTime();
+    const idTime: number = new Date(id).getTime();
+    return idTime < startTime ? true : false;
+  };
+
+  const traceAndRemoveElHasClass = (e: HTMLElement) => {
+    const nextEl: HTMLElement = (e.nextElementSibling as HTMLElement);
+    if (!(nextEl.classList.value.match('between') || nextEl.classList.value.match('selected'))) {
+      return;
+    }
+    nextEl.classList.remove('between');
+    nextEl.classList.remove('selected');
+    traceAndRemoveElHasClass(nextEl);
+  };
+
+  const traceElHasId = (e: HTMLElement, id: string) => {
+    const prevEl: HTMLElement = (e.previousElementSibling as HTMLElement);
+    if (prevEl.dataset.id === id) { return; }
+    if (prevEl.classList.contains('selected')) {
+      prevEl.classList.remove('selected');
+    }
+    prevEl.classList.add('between');
+    traceElHasId(prevEl, id);
+  };
+
+  const addSelectedClass = (e: MouseEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
-    const { isondate } = target.dataset;
+    const { isondate } = e.currentTarget.dataset;
     if (isondate === 'no') return;
     target.classList.add('selected');
   };
 
   const onClickDateItem = (e: MouseEvent<HTMLDivElement>): void => {
-    testEl(e);
+    if (isIdBefore(e.currentTarget.dataset.id)) { return; }
+    addSelectedClass(e);
     setSchedule(e);
+    if (startDate === '') { return; }
+    traceElHasId(e.currentTarget, startDate);
+    traceAndRemoveElHasClass(e.currentTarget);
   };
 
-  const getDateHTML = (
-    styling: string = '',
-    children: number = 0,
-    id: string = '',
-    noDate: boolean,
-  ): ReactElement => (
-      <S.CalendarDate
-        onClick={onClickDateItem}
-        key={id}
-        data-id={id}
-        data-isondate={noDate ? 'no' : 'yes'}
-        className={`calendar__day ${styling}`}
-      >
-        <S.CalendarDaySpan>{children ? children : ''}</S.CalendarDaySpan>
-      </S.CalendarDate>
-    );
-
-  const setFixDayCount = (num: number): string =>
-    num < 10 ? `0${num}` : `${num}`;
-
-  const setCalendarData = (
-    yearCopy: number,
-    monthCopy: number,
-  ): ReactElement[] => {
-    const month: string = setFixDayCount(monthCopy);
-    const lastDay: number = new Date(yearCopy, +month, 0).getDate();
-    const firstDayName: number = new Date(yearCopy, +month - 1, 1).getDay();
-    const calJSX: ReactElement[] = [];
-    let startDayCount: number = 1;
-
-    for (let i = 0; i < 6; i += 1) {
-      for (let j = 0; j < 7; j += 1) {
-        if (i === 0 && j < firstDayName) {
-          calJSX.push(getDateHTML('', 0, `${j}`, true));
-        } else if (i > 0 && startDayCount <= lastDay) {
-          calJSX.push(getDateHTML('month', startDayCount, `${yearCopy}-${month}-${setFixDayCount(startDayCount)}`, false));
-          startDayCount += 1;
-        }
-      }
-    }
-
-    return calJSX;
-  };
-
-  const getDateElParent = (date: string) => document.body;
-  const getDateTop = (date: string) => getDateElParent(date).offsetTop;
-  const getDateLeft = (date: string) => getDateElParent(date).offsetLeft;
-  const getDateWidth = (date: string) => getDateElParent(date).offsetWidth;
-  const getDateHeight = (date: string) => getDateElParent(date).offsetHeight;
+  const getDateElParent = (e: HTMLElement) => e.parentElement;
+  const getDateTop = (e: HTMLElement) => getDateElParent(e).offsetTop;
+  const getDateLeft = (e: HTMLElement) => getDateElParent(e).offsetLeft;
+  const getDateWidth = (e: HTMLElement) => getDateElParent(e).offsetWidth;
+  const getDateHeight = (e: HTMLElement) => getDateElParent(e).offsetHeight;
 
   const addSchedule = (title: string, start: string, end: string) => {
-    const startDate: Date = new Date(start),
-      endDate: Date = new Date(end);
+    const starting: Date = new Date(start);
+    const ending: Date = new Date(end);
+    console.log(title, start, end);
 
     // start: '2020-06-20', end: '2020-06-22'
-    // width: 80px, height: 70px
+    // width: 80px, height: 80px
 
     // ? 한줄
     // if (getDateTop(start) === getDateTop(end)) {
@@ -135,6 +126,52 @@ const CalendarDate: React.FC<Props> = ({ today, setSchedule }) => {
   ! 예시 사이트
   ? https://dhtmlx.com/docs/products/dhtmlxScheduler/sample_recurring.shtml
   */
+
+  const getDateHTML = (
+    styling: string = '',
+    children: number = 0,
+    id: string = '',
+    noDate: boolean,
+  ): ReactElement => (
+      <S.CalendarDate
+        onClick={onClickDateItem}
+        key={id}
+        data-id={id}
+        data-isondate={noDate ? 'no' : 'yes'}
+        className={styling}
+      >
+        <S.CalendarDaySpan>{children ? children : ''}</S.CalendarDaySpan>
+      </S.CalendarDate>
+    );
+
+  const setFixDayCount = (num: number): string =>
+    num < 10 ? `0${num}` : `${num}`;
+
+  const setCalendarData = (
+    yearCopy: number,
+    monthCopy: number,
+  ): ReactElement[] => {
+    const realToday: Date = new Date();
+    const month: string = setFixDayCount(monthCopy);
+    const lastDay: number = new Date(yearCopy, +month, 0).getDate();
+    const firstDayName: number = new Date(yearCopy, +month - 1, 1).getDay();
+    const calJSX: ReactElement[] = [];
+    const prevLastDay = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    let startDayCount: number = 1;
+
+    for (let i = 0; i < 6; i += 1) {
+      for (let j = 0; j < 7; j += 1) {
+        if (i === 0 && j < firstDayName) {
+          calJSX.push(getDateHTML('prev', prevLastDay - (firstDayName - 1) + j, `${j}`, true));
+        } else if (i > 0 && startDayCount <= lastDay) {
+          calJSX.push(getDateHTML('month', startDayCount, `${yearCopy}-${month}-${setFixDayCount(startDayCount)}`, false));
+          startDayCount += 1;
+        }
+      }
+    }
+
+    return calJSX;
+  };
 
   const memoizedCalendar = useMemo<ReactElement[]>(
     () => setCalendarData(today.getFullYear(), today.getMonth() + 1),
