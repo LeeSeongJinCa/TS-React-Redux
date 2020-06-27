@@ -25,29 +25,27 @@ const CalendarDate: React.FC<Props> = ({ today, setSchedule }) => {
     id: string = '',
     noDate: boolean,
   ): ReactElement => (
-    <S.CalendarDate
-      onClick={onClickDateItem}
-      key={id}
-      data-id={id}
-      data-isondate={noDate ? 'no' : 'yes'}
-      className={`calendar__day ${styling}`}
-    >
-      <S.CalendarDaySpan>{children ? children : ''}</S.CalendarDaySpan>
-    </S.CalendarDate>
-  );
+      <S.CalendarDate
+        onClick={onClickDateItem}
+        key={id}
+        data-id={id}
+        data-isondate={noDate ? 'no' : 'yes'}
+        className={`calendar__day ${styling}`}
+      >
+        <S.CalendarDaySpan>{children ? children : ''}</S.CalendarDaySpan>
+      </S.CalendarDate>
+    );
 
   const setFixDayCount = (num: number): string =>
     num < 10 ? `0${num}` : `${num}`;
 
   const setCalendarData = (
-    todayCopy: Date,
-    year: number,
-    copyMonth: number,
+    yearCopy: number,
+    monthCopy: number,
   ): ReactElement[] => {
-    const month: string = setFixDayCount(copyMonth);
-    const lastDay: number = new Date(year, +month, 0).getDate();
-    const firstDayName: number = new Date(year, +month - 1, 1).getDay();
-    // const firstDayThisWeek: number = todayCopy.getDate() - todayCopy.getDay();
+    const month: string = setFixDayCount(monthCopy);
+    const lastDay: number = new Date(yearCopy, +month, 0).getDate();
+    const firstDayName: number = new Date(yearCopy, +month - 1, 1).getDay();
     const calJSX: ReactElement[] = [];
     let startDayCount: number = 1;
 
@@ -55,30 +53,10 @@ const CalendarDate: React.FC<Props> = ({ today, setSchedule }) => {
       for (let j = 0; j < 7; j += 1) {
         if (i === 0 && j < firstDayName) {
           calJSX.push(getDateHTML('', 0, `${j}`, true));
-          break;
+        } else if (i > 0 && startDayCount <= lastDay) {
+          calJSX.push(getDateHTML('month', startDayCount, `${yearCopy}-${month}-${setFixDayCount(startDayCount)}`, false));
+          startDayCount += 1;
         }
-        if (i > 0 && startDayCount <= lastDay) {
-          if (startDayCount === todayCopy.getDate()) {
-            calJSX.push(
-              getDateHTML(
-                'today',
-                startDayCount,
-                `${year}-${month}-${setFixDayCount(startDayCount)}`,
-                false,
-              ),
-            );
-          } else {
-            calJSX.push(
-              getDateHTML(
-                'month',
-                startDayCount,
-                `${year}-${month}-${setFixDayCount(startDayCount)}`,
-                false,
-              ),
-            );
-          }
-        }
-        startDayCount += 1;
       }
     }
 
@@ -159,8 +137,8 @@ const CalendarDate: React.FC<Props> = ({ today, setSchedule }) => {
   */
 
   const memoizedCalendar = useMemo<ReactElement[]>(
-    () => setCalendarData(today, today.getFullYear(), today.getMonth() + 1),
-    [],
+    () => setCalendarData(today.getFullYear(), today.getMonth() + 1),
+    [setSchedule, today],
   );
   return <>{memoizedCalendar}</>;
 };

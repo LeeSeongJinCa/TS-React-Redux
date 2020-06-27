@@ -1,17 +1,8 @@
 import styled from 'styled-components';
+import { CalendarDTemp } from '../Calendar/style';
 
-export const CalendarDate = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: calc((100% - 70px) / 7);
-  height: calc((100% - 60px) / 6);
-  margin: 10px 10px 0 0;
-  padding: 20px;
+export const CalendarDate = styled(CalendarDTemp)`
   border-radius: 5px;
-  font-weight: bold;
-  font-size: 16px;
   transition: 0.3s;
   cursor: pointer;
   &.month {
