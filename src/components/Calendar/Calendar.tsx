@@ -1,34 +1,50 @@
 import React, {
-  MouseEvent, useState, Dispatch, SetStateAction,
+  useState,
+  useEffect,
+  MouseEvent,
+  Dispatch,
+  SetStateAction,
 } from 'react';
 import * as S from './style';
-import { CalendarDate, CalendarDay, CalendarSetting } from '../../components';
+import { CalendarDate, CalendarDay } from '../../components';
 import { ScheduleState } from '../../modules/schedule';
+
 interface Props {
   schedule: ScheduleState;
   setSchedule: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
 const Calendar: React.FC<Props> = ({ schedule, setSchedule }) => {
-  const [today, setToday]: [Date, Dispatch<SetStateAction<Date>>] = useState(new Date());
+  const today: Date = new Date();
 
-  const setMonth = (e: MouseEvent<HTMLDivElement>) => { // 1 || -1
-    const { direc } = e.currentTarget.dataset;
-    let month: number = today.getMonth() + 1 + parseInt(direc, 10);
-    let year: number = today.getFullYear();
-    if (month > 12) {
-      month = 1;
-      year += 1;
-    } else if (month < 1) {
-      month = 12;
-      year -= 1;
-    }
-    setToday(new Date(`${year}-${month}`));
-  };
+  const [thisMonth, setThisMonth]:
+    [string, Dispatch<SetStateAction<string>>] = useState('');
+
+  useEffect(() => {
+    const fullYear: number = today.getFullYear();
+    const month: number = today.getMonth();
+    setThisMonth(`${fullYear}-${month < 10 ? `0${month}` : month}`);
+  }, []);
 
   return (
     <>
-      <CalendarSetting today={today} setMonth={setMonth} />
+      {schedule.startDate} || {schedule.endDate}
+      <S.CalnedarSetting>
+        <S.CalendarSettingMonthWrap>
+          달력 날짜:{' '}
+          <S.CalendarSettingMonth>{thisMonth}</S.CalendarSettingMonth>
+        </S.CalendarSettingMonthWrap>
+        <S.CalendarSettingTitleLabel htmlFor="title">
+          제목
+        </S.CalendarSettingTitleLabel>
+        <S.CalendarSettingTitleInput
+          type="text"
+          autoComplete="off"
+          name="title"
+          id="title"
+          placeholder="제목"
+        />
+      </S.CalnedarSetting>
       <S.Calendar>
         <CalendarDay />
         <CalendarDate today={today} setSchedule={setSchedule} />
