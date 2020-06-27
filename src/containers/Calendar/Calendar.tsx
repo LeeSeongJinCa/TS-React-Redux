@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useCallback } from 'react';
 import {
   setStartDate,
   setEndDate,
@@ -11,11 +11,11 @@ import { Calendar } from '../../components';
 const CalendarContainer: React.FC = () => {
   const dispatch = useDispatch();
   const schedule = useSelector((state: StoreState) => state.schedule);
+  const { startDate } = schedule;
 
   const setSchedule = (e: MouseEvent<HTMLDivElement>) => {
     const { id } = e.currentTarget.dataset;
-
-    if (schedule.startDate === '') {
+    if (startDate === '') {
       dispatch(setScheduleThunk(id, setStartDate));
     } else {
       dispatch(setScheduleThunk(id, setEndDate));
