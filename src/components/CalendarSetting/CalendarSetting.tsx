@@ -1,5 +1,7 @@
-import React, { useEffect, Dispatch, useState, SetStateAction } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import * as S from './style';
+import { StoreState } from '../../modules';
 
 interface Props {
   today: Date;
@@ -10,6 +12,8 @@ const CalendarSetting: React.FC<Props> = ({
   today,
   setMonth,
 }) => {
+  const { startDate, endDate } = useSelector((state: StoreState) => state.schedule);
+
   const getCurMon = (to: Date): string => {
     const fullYear: number = to.getFullYear();
     const month: number = to.getMonth() + 1;
@@ -21,13 +25,15 @@ const CalendarSetting: React.FC<Props> = ({
       <S.CalendarSettingMonthWrap>
         달력 날짜:{' '}
         <S.CalendarSettingMonth>{getCurMon(today)}</S.CalendarSettingMonth>
+      </S.CalendarSettingMonthWrap>
+      <S.CalendarSettingButtonWrap>
         <S.CalendarSettingButton onClick={setMonth} data-direc={-1}>
           {'<'}
         </S.CalendarSettingButton>
         <S.CalendarSettingButton onClick={setMonth} data-direc={1}>
           {'>'}
         </S.CalendarSettingButton>
-      </S.CalendarSettingMonthWrap>
+      </S.CalendarSettingButtonWrap>
       <S.CalendarSettingTitleLabel>
         <S.CalendarSettingTitleInput
           type="text"
@@ -37,6 +43,20 @@ const CalendarSetting: React.FC<Props> = ({
           placeholder="제목"
         />
       </S.CalendarSettingTitleLabel>
+      <S.CalendarSettingSelectedWrap>
+        <S.CalendarSettingSelectedDateWrap>
+          시작 날짜:{' '}
+          <S.CalendarSettingSelectedDate>
+            {startDate ? startDate : '날짜 추가'}
+          </S.CalendarSettingSelectedDate>
+        </S.CalendarSettingSelectedDateWrap>
+        <S.CalendarSettingSelectedDateWrap>
+          종료 날짜:{' '}
+          <S.CalendarSettingSelectedDate>
+            {endDate ? endDate : '날짜 추가'}
+          </S.CalendarSettingSelectedDate>
+        </S.CalendarSettingSelectedDateWrap>
+      </S.CalendarSettingSelectedWrap>
     </S.CalnedarSetting>
   );
 };
