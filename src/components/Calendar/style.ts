@@ -3,21 +3,22 @@ import styled from 'styled-components';
 export const Calendar = styled.div`
   display: flex;
   flex-wrap: wrap;
+  width: 633px;
+  height: 580px;
   margin: auto;
-  height: 480px;
 `;
 
-export const CalendarDaySpan = styled.span``;
-
-export const CalnedarSetting = styled.div`
-  margin-top: 50px;
-  text-align: center;
+export const CalendarDTemp = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 16px;
 `;
-
-export const CalendarSettingMonthWrap = styled.h1``;
-
-export const CalendarSettingMonth = styled.span``;
-
-export const CalendarSettingTitleLabel = styled.label``;
-
-export const CalendarSettingTitleInput = styled.input``;
