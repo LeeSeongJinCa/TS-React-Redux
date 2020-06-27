@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { CalendarDTemp } from '../Calendar/style';
 
 export const CalendarDay = styled(CalendarDTemp)`
-  border-bottom: 4px solid red;
-  background-color: #ffc5c5;
+  color: rgb(75, 75, 75);
 `;
 
 export const CalendarDaySpan = styled.span``;

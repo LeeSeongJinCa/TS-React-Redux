@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Calendar = styled.div`
   display: flex;
   flex-wrap: wrap;
+  width: 633px;
   height: 580px;
   margin: auto;
-  padding: 12px;
 `;
 
 export const CalendarDTemp = styled.div`
@@ -13,8 +13,8 @@ export const CalendarDTemp = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc((100% - 70px) / 7);
-  height: calc((100% - 60px) / 7);
+  width: 80px;
+  height: 80px;
   margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
