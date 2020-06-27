@@ -1,5 +1,4 @@
 import React, {
-  useMemo,
   useState,
   useEffect,
   MouseEvent,
@@ -7,7 +6,7 @@ import React, {
   SetStateAction,
 } from 'react';
 import * as S from './style';
-import { CalendarDate } from '../../components';
+import { CalendarDate, CalendarDay } from '../../components';
 import { ScheduleState } from '../../modules/schedule';
 
 interface Props {
@@ -17,17 +16,6 @@ interface Props {
 
 const Calendar: React.FC<Props> = ({ schedule, setSchedule }) => {
   const today: Date = new Date();
-
-  const setCalendarDayData = useMemo(() => {
-    const dayArr: string[] = ['일', '월', '화', '수', '목', '금', '토'],
-      dayJsx = dayArr.map((id: string) => (
-        <S.CalendarDay className="by" key={id}>
-          <S.CalendarDaySpan>{id}</S.CalendarDaySpan>
-        </S.CalendarDay>
-      ));
-    return dayJsx;
-  }, []);
-
 
   const [thisMonth, setThisMonth]:
     [string, Dispatch<SetStateAction<string>>] = useState('');
@@ -58,7 +46,7 @@ const Calendar: React.FC<Props> = ({ schedule, setSchedule }) => {
         />
       </S.CalnedarSetting>
       <S.Calendar>
-        {setCalendarDayData}
+        <CalendarDay />
         <CalendarDate today={today} setSchedule={setSchedule} />
       </S.Calendar>
     </>
