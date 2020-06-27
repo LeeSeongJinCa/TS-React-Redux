@@ -18,6 +18,9 @@ import TodoTableType from './TodoTableType/TodoTableType.tsx';
 import TodoTableTypeInput from './TodoTableTypeInput/TodoTableTypeInput.tsx';
 import TodoTableTypeList from './TodoTableTypeList/TodoTableTypeList.tsx';
 import Calendar from './Calendar/Calendar.tsx';
+import CalendarDate from './CalendarDate/CalendarDate.tsx';
+import CalendarDay from './CalendarDay/CalendarDay.tsx';
+import CalendarSetting from './CalendarSetting/CalendarSetting.tsx';
 
 export {
   Main,
@@ -40,4 +43,7 @@ export {
   TodoTableTypeList,
   TodoAddButton,
   Calendar,
+  CalendarDate,
+  CalendarDay,
+  CalendarSetting,
 };
