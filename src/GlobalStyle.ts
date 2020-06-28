@@ -61,7 +61,6 @@ button:focus {
 
 button {
   cursor: pointer;
-  font: none;
   font-family: 'Noto Sans', sans-serif;
 }
 

@@ -6,7 +6,6 @@ export interface IInputsType {
   type: string;
   typing?: string;
   thing?: string;
-  time?: number;
   notification?: string;
 }
 
