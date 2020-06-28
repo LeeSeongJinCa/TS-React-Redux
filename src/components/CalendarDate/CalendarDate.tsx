@@ -19,28 +19,30 @@ const CalendarDate: React.FC<Props> = ({ today, setSchedule }) => {
 
   const traceAndRemoveElHasClass = (e: HTMLElement) => {
     const nextEl: HTMLElement = (e.nextElementSibling as HTMLElement);
-    if (!(nextEl.classList.value.match('between') || nextEl.classList.value.match('selected'))) {
+    if (nextEl === null) { return; }
+    const clsList = nextEl.classList;
+    if (!(clsList.value.match('between')
+      || clsList.value.match('selected'))) {
       return;
     }
-    nextEl.classList.remove('between');
-    nextEl.classList.remove('selected');
+    clsList.remove('between');
+    clsList.remove('selected');
     traceAndRemoveElHasClass(nextEl);
   };
 
   const traceElHasId = (e: HTMLElement, id: string) => {
     const prevEl: HTMLElement = (e.previousElementSibling as HTMLElement);
+    const clsList = prevEl.classList;
     if (prevEl.dataset.id === id) { return; }
-    if (prevEl.classList.contains('selected')) {
-      prevEl.classList.remove('selected');
-    }
-    prevEl.classList.add('between');
+    if (clsList.contains('selected')) { clsList.remove('selected'); }
+    clsList.add('between');
     traceElHasId(prevEl, id);
   };
 
   const addSelectedClass = (e: MouseEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
     const { isondate } = e.currentTarget.dataset;
-    if (isondate === 'no') return;
+    if (isondate === 'no') { return; }
     target.classList.add('selected');
   };
 
@@ -49,7 +51,9 @@ const CalendarDate: React.FC<Props> = ({ today, setSchedule }) => {
     addSelectedClass(e);
     setSchedule(e);
     if (startDate === '') { return; }
-    traceElHasId(e.currentTarget, startDate);
+    if (startDate !== e.currentTarget.dataset.id) {
+      traceElHasId(e.currentTarget, startDate);
+    }
     traceAndRemoveElHasClass(e.currentTarget);
   };
 

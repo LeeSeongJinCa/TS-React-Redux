@@ -34,15 +34,6 @@ const CalendarSetting: React.FC<Props> = ({
           {'>'}
         </S.CalendarSettingButton>
       </S.CalendarSettingButtonWrap>
-      <S.CalendarSettingTitleLabel>
-        <S.CalendarSettingTitleInput
-          type="text"
-          autoComplete="off"
-          name="title"
-          id="title"
-          placeholder="제목"
-        />
-      </S.CalendarSettingTitleLabel>
       <S.CalendarSettingSelectedWrap>
         <S.CalendarSettingSelectedDateWrap>
           시작 날짜:{' '}
