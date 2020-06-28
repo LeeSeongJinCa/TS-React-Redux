@@ -20,7 +20,6 @@ const TodoTableRowImg: React.FC<Props> = ({
   todoDispatch,
 }) => {
   const onClickCancel = () => {
-    console.log(id);
     todoDispatch({ type: id, [id]: '' });
   };
 

@@ -6,7 +6,6 @@ import * as S from './style';
 import {
   TodoTableRow,
   TodoTableType,
-  Calendar,
 } from '../../components';
 import {
   todoInputList,
@@ -24,7 +23,7 @@ const TodoTable: React.FC<Props> = ({
   todoDispatch,
 }) => {
   const tableRows: React.ReactElement[] = useMemo(() => {
-    return todoInputList.map(({ id }: IInputs, i) =>
+    return todoInputList.map(({ id }: IInputs) =>
       <TodoTableRow
         key={id}
         type="text"
@@ -33,7 +32,7 @@ const TodoTable: React.FC<Props> = ({
         todoDispatch={todoDispatch}
       />,
     );
-  }, []);
+  }, [todoState]);
 
   return (
     <S.TodoInputTable>

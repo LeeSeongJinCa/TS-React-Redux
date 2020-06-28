@@ -26,7 +26,6 @@ const TodoTableRowInput: React.FC<Props> = ({
   return (
     <S.TodoInputTableRowInput
       onChange={onChangeTodo}
-      data-id={id}
       type={type}
       placeholder={id}
       value={todoState[id]}
