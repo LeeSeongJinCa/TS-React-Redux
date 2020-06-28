@@ -6,6 +6,7 @@ import {
   TodoHeaderContainer,
   TodoMainContainer,
   TodoAddButtonContainer,
+  CalendarContainer,
 } from '../../containers';
 
 interface Props {}
@@ -15,6 +16,7 @@ const TodoContainer: React.FC<Props> = () => {
     <Todo>
       <TodoHeaderContainer />
       <TodoMainContainer />
+      <CalendarContainer />
       <TodoAddButtonContainer />
     </Todo>
   );
