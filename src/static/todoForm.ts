@@ -6,7 +6,8 @@ export interface IInputsType {
   type: string;
   typing?: string;
   thing?: string;
-  time?: number;
+  startDate?: number;
+  endDate?: number;
   notification?: string;
 }
 
