@@ -31,7 +31,12 @@
       }
     ],
     "no-console": false,
-    "one-variable-per-declaration": false
+    "one-variable-per-declaration": false,
+    "align": [
+      true,
+      "parameters"
+    ],
+    "no-empty": [false]
   },
   "rulesDirectory": []
 }

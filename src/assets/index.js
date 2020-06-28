@@ -1,27 +1,30 @@
-import undoSvg from './icon/undo.svg';
-import tuneSvg from './icon/tune.svg';
-import pencilSvg from './icon/pencil.svg';
-import sportsSvg from './icon/sports.svg';
-import musicSvg from './icon/music.svg';
+import addTodoSvg from './icon/addTodo.svg';
+import arrowSvg from './icon/arrow.svg';
 import businessSvg from './icon/business.svg';
 import cancelSvg from './icon/cancel.svg';
+import closeSvg from './icon/closeSvg.svg';
+import musicSvg from './icon/music.svg';
 import notSvg from './icon/notInterested.svg';
 import openFull from './icon/openFull.svg';
-import arrowSvg from './icon/arrow.svg';
+import pencilSvg from './icon/pencil.svg';
 import plusSvg from './icon/plus.svg';
-import addTodoSvg from './icon/addTodo.svg';
+import sportsSvg from './icon/sports.svg';
+import tuneSvg from './icon/tune.svg';
+import undoSvg from './icon/undo.svg';
+
 
 export {
-  undoSvg,
-  tuneSvg,
-  pencilSvg,
-  sportsSvg,
-  musicSvg,
+  addTodoSvg,
+  arrowSvg,
   businessSvg,
   cancelSvg,
+  closeSvg,
+  musicSvg,
   notSvg,
   openFull,
-  arrowSvg,
+  pencilSvg,
   plusSvg,
-  addTodoSvg,
+  sportsSvg,
+  tuneSvg,
+  undoSvg,
 };

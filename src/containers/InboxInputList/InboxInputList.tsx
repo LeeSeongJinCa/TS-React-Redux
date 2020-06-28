@@ -5,12 +5,6 @@ interface Props {
   inputList: ReactElement[];
 }
 
-interface IInputs {
-  title: string;
-  subTitle: string;
-  until: string;
-}
-
 const InboxInputListContainer: React.FC<Props> = ({ inputList }) => {
   return <InboxInputList inputList={inputList} />;
 };
