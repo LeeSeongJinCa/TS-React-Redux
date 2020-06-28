@@ -1,18 +1,19 @@
 import React, { useReducer, Dispatch } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+
 import { IInputsType } from '../../static/todoForm';
-import {
-  Todo,
-} from '../../components';
+import { setReset, setResetThunk } from '../../modules/schedule';
+import { StoreState } from '../../modules';
+import { URL } from '../../static/server';
+import { Todo } from '../../components';
 import {
   TodoHeaderContainer,
   TodoMainContainer,
   TodoAddButtonContainer,
   CalendarContainer,
 } from '../../containers';
-import { useSelector } from 'react-redux';
-import { StoreState } from '../../modules';
-import axios from 'axios';
-import { URL } from '../../static/server';
 
 interface Props { }
 
@@ -37,7 +38,9 @@ const todoInputReducer = (state: IInputsType, action: any) => {
 };
 
 const TodoContainer: React.FC<Props> = () => {
+  const history = useHistory();
   const schedule = useSelector((state: StoreState) => state.schedule);
+  const dispatch = useDispatch();
   const [todoState, todoDispatch]: [
     IInputsType,
     Dispatch<IInputsType>,
@@ -48,22 +51,19 @@ const TodoContainer: React.FC<Props> = () => {
     const { startDate, endDate } = schedule;
 
     if (!(typing !== 'not' && thing && notification && startDate && endDate)) {
-      console.log('no');
+      // Todo: Check 함수 => 안 된 부분 옆에 modal 또는 작은 팝업 띄어서 보여주기
       return;
     }
 
     axios.post(`${URL}/todos`, {
-      data: {
-        thing,
-        notification,
-        startDate,
-        endDate,
-        type: typing,
-      },
-    }).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
+      thing,
+      notification,
+      startDate: new Date(startDate).getTime(),
+      endDate: new Date(endDate).getTime(),
+      type: typing,
+    }).then((_) => {
+      dispatch(setResetThunk(setReset));
+      history.push('/');
     });
   };
 
