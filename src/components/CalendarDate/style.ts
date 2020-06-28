@@ -6,6 +6,7 @@ export const CalendarDate = styled(CalendarDTemp)`
   border-radius: 50%;
   transition: 0.3s;
   color: ${globalColor};
+  font-size: 20px;
   cursor: pointer;
   &.prev {
     color: ${globalComplementaryColor};

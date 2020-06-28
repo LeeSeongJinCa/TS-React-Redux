@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { globalBackColor } from '../../GlobalStyle';
 
 export const CalnedarSetting = styled.div`
-  margin-top: 50px;
   text-align: center;
 `;
 
