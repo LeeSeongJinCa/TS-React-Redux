@@ -6,7 +6,7 @@ import {
 } from '../../GlobalStyle';
 
 export const InboxInputList = styled.ul`
-  height: 320px;
+  height: 480px;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width: 5px;
