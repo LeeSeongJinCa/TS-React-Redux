@@ -25,30 +25,3 @@
     "./node_modules"
   ]
 }
-// {
-//   "compilerOptions": {
-//     "outDir": "./dist",
-//     "jsx": "react",
-//     "module": "commonjs",
-//     "noImplicitAny": false,
-//     "esModuleInterop": true,
-//     "target": "es5",
-//     "sourceMap": true,
-//     "baseUrl": "src",
-//     "typeRoots": [
-//       "/node_modules/@types",
-//       "@types"
-//     ],
-//     "lib": [
-//       "es5",
-//       "dom"
-//     ]
-//   },
-//   "include": [
-//     "./src/**/*",
-//     "src/actions/ActionTypes.ts"
-//   ],
-//   "exclude": [
-//     "./node_modules"
-//   ]
-// }

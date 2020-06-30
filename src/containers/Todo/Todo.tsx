@@ -1,4 +1,4 @@
-import React, { useReducer, Dispatch } from 'react';
+import React, { useReducer, Dispatch, useState, SetStateAction } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
@@ -45,26 +45,30 @@ const TodoContainer: React.FC<Props> = () => {
     IInputsType,
     Dispatch<IInputsType>,
   ] = useReducer(todoInputReducer, todoInitialState);
+  const [notCompleted, setNotCompleted] = useState<string>('');
 
-  const postTodo = () => {
+  const postTodo = async () => {
     const { thing, typing, notification } = todoState;
     const { startDate, endDate } = schedule;
 
     if (!(typing !== 'not' && thing && notification && startDate && endDate)) {
-      // Todo: Check 함수 => 안 된 부분 옆에 modal 또는 작은 팝업 띄어서 보여주기
+      // Todo: Check 함수 => 안 된 부분 작은 팝업 띄어서 보여주기
       return;
     }
 
-    axios.post(`${URL}/todos`, {
-      thing,
-      notification,
-      startDate: new Date(startDate).getTime(),
-      endDate: new Date(endDate).getTime(),
-      type: typing,
-    }).then((_) => {
+    try {
+      await axios.post(`${URL}/todos`, {
+        thing,
+        notification,
+        startDate: new Date(startDate).getTime(),
+        endDate: new Date(endDate).getTime(),
+        type: typing,
+      });
       dispatch(setResetThunk(setReset));
       history.push('/');
-    });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
