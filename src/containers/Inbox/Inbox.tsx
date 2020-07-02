@@ -7,17 +7,16 @@ import React, {
   Dispatch,
   SetStateAction,
   ReactElement,
-  MouseEvent,
 } from 'react';
-import axios from 'axios';
 
 import { GetIInput } from '../../static/todoForm';
-import { URL } from '../../static/server';
-import { Inbox, InboxInput, InboxNoList } from '../../components';
+import { apiGetTodo, apiDeleteTodo } from '../../utils';
+import { Inbox, InboxInput, InboxNoList, InboxLoading } from '../../components';
 import {
   InboxInputListContainer,
   InboxBottomContainer,
 } from '../../containers';
+import { toast } from 'react-toastify';
 
 interface Props { }
 
@@ -26,20 +25,33 @@ const InboxContainer: React.FC<Props> = () => {
     [GetIInput[], Dispatch<SetStateAction<GetIInput[]>>] = useState([]);
   const isExistInput: MutableRefObject<any> = useRef(undefined);
 
+  const successToast = () => {
+    toast.success('Success to delete new thing', {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+  };
+  const failToast = () => {
+    toast.error('Fail to delete new thing', {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+  };
+
   const getTodo = async () => {
-    const get = await axios.get(`${URL}/todos`);
-    setInputs(get.data);
+    setInputs((await apiGetTodo()).data);
   };
 
   const inputList: ReactElement[] = useMemo(() => inputs.map((input: GetIInput) => {
     const { _id, type, thing, notification, endDate } = input;
-    const handleDeleteInbox = async () => {
-      if (!confirm('삭제하시겠습니까?')) { return; }
+    const deleteTodo = async () => {
       try {
-        await axios.delete(`${URL}/todos/${_id}`);
-        const filterInputs = inputs.filter((o: GetIInput) => o._id !== _id);
-        setInputs(filterInputs);
-      } catch { }
+        await apiDeleteTodo(_id);
+        successToast();
+        setInputs(inputs.filter((o: GetIInput) => o._id !== _id));
+      } catch (err) {
+        failToast();
+      }
     };
     return (<InboxInput
       key={_id}
@@ -47,7 +59,7 @@ const InboxContainer: React.FC<Props> = () => {
       thing={thing}
       notification={notification}
       endDate={endDate}
-      handleDeleteInbox={handleDeleteInbox}
+      deleteTodo={deleteTodo}
     />);
   }), [inputs]);
 
@@ -62,7 +74,7 @@ const InboxContainer: React.FC<Props> = () => {
     <Inbox>
       <InboxInputListContainer
         inputList={typeof isExistInput.current === 'undefined'
-          ? null
+          ? <InboxLoading />
           : (inputList.length ? inputList : <InboxNoList />)
         }
       />
