@@ -1,12 +1,11 @@
-import React, { useReducer, Dispatch, useState, SetStateAction } from 'react';
+import React, { useReducer, Dispatch, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 
 import { IInputsType } from '../../static/todoForm';
-import { setReset, setResetThunk } from '../../modules/schedule';
+import { setReset, setResetThunk, ScheduleState } from '../../modules/schedule';
 import { StoreState } from '../../modules';
-import { URL } from '../../static/server';
+import { apiPostTodo } from '../../utils';
 import { Todo } from '../../components';
 import {
   TodoHeaderContainer,
@@ -14,6 +13,7 @@ import {
   TodoAddButtonContainer,
   CalendarContainer,
 } from '../../containers';
+import { toast } from 'react-toastify';
 
 interface Props { }
 
@@ -37,6 +37,13 @@ const todoInputReducer = (state: IInputsType, action: any) => {
   }
 };
 
+const WanrningWrap: React.FC = () => {
+  return (<div>
+    <p>There is something problem to add new thing.</p>
+    <p>Plese check whole inputs and date</p>
+  </div>);
+};
+
 const TodoContainer: React.FC<Props> = () => {
   const history = useHistory();
   const schedule = useSelector((state: StoreState) => state.schedule);
@@ -45,31 +52,46 @@ const TodoContainer: React.FC<Props> = () => {
     IInputsType,
     Dispatch<IInputsType>,
   ] = useReducer(todoInputReducer, todoInitialState);
-  const [notCompleted, setNotCompleted] = useState<string>('');
 
-  const postTodo = async () => {
-    const { thing, typing, notification } = todoState;
-    const { startDate, endDate } = schedule;
+  const successToast = () => {
+    toast.success('Success to add new thing', {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+  };
+  const failToast = () => {
+    toast.error('Fail to add new thing', {
+      position: 'top-right',
+      autoClose: 2000,
+    });
+  };
+  const warningToast = () => {
+    toast.warning(<WanrningWrap />, {
+      position: 'top-right',
+      autoClose: 5000,
+    });
+  };
 
-    if (!(typing !== 'not' && thing && notification && startDate && endDate)) {
-      // Todo: Check 함수 => 안 된 부분 작은 팝업 띄어서 보여주기
+  const isProblemMakeTodo = (
+    { thing, typing, notification }: IInputsType,
+    { startDate, endDate }: ScheduleState,
+  ) => (typing !== 'not' && thing && notification && startDate && endDate);
+
+  const postTodo = useCallback(async () => {
+    if (!isProblemMakeTodo(todoState, schedule)) {
+      warningToast();
       return;
     }
 
     try {
-      await axios.post(`${URL}/todos`, {
-        thing,
-        notification,
-        startDate: new Date(startDate).getTime(),
-        endDate: new Date(endDate).getTime(),
-        type: typing,
-      });
+      await apiPostTodo(todoState, schedule);
       dispatch(setResetThunk(setReset));
+      successToast();
       history.push('/');
     } catch (err) {
-      console.log(err);
+      failToast();
     }
-  };
+  }, [todoState, schedule]);
 
   return (
     <Todo>
