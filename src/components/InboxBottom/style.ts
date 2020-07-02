@@ -31,4 +31,5 @@ export const InboxBottomPlus = styled.img`
   right: 0;
   width: 45px;
   height: 45px;
+  transform: rotateY(180deg);
 `;

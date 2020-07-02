@@ -3,6 +3,7 @@ import arrowSvg from './icon/arrow.svg';
 import businessSvg from './icon/business.svg';
 import cancelSvg from './icon/cancel.svg';
 import closeSvg from './icon/closeSvg.svg';
+import loadingSvg from './icon/loading.svg';
 import musicSvg from './icon/music.svg';
 import notSvg from './icon/notInterested.svg';
 import openFull from './icon/openFull.svg';
@@ -19,6 +20,7 @@ export {
   businessSvg,
   cancelSvg,
   closeSvg,
+  loadingSvg,
   musicSvg,
   notSvg,
   openFull,

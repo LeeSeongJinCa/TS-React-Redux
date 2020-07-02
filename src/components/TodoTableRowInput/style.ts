@@ -15,4 +15,5 @@ export const TodoInputTableRowInput = styled.input`
     transition: 0.5s;
     color: ${globalButtonColor};
   }
+  &:focus::placeholder { color: #88abee; }
 `;

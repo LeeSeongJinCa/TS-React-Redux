@@ -1,6 +1,7 @@
 import React, {
   useMemo,
   Dispatch,
+  ReactElement,
 } from 'react';
 import * as S from './style';
 import {
@@ -22,7 +23,7 @@ const TodoTable: React.FC<Props> = ({
   todoState,
   todoDispatch,
 }) => {
-  const tableRows: React.ReactElement[] = useMemo(() => {
+  const tableRows: ReactElement[] = useMemo(() => {
     return todoInputList.map(({ id }: IInputs) =>
       <TodoTableRow
         key={id}
@@ -34,12 +35,16 @@ const TodoTable: React.FC<Props> = ({
     );
   }, [todoState]);
 
+  const typeRows: ReactElement = useMemo(() => {
+    return (<TodoTableType
+      todoState={todoState}
+      todoDispatch={todoDispatch}
+    />);
+  }, [todoState]);
+
   return (
     <S.TodoInputTable>
-      <TodoTableType
-        todoState={todoState}
-        todoDispatch={todoDispatch}
-      />
+      {typeRows}
       {tableRows}
     </S.TodoInputTable>
   );

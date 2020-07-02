@@ -15,7 +15,7 @@ export const setEndDate = (date: string) => ({
 });
 export const setReset = () => ({
   type: RESET,
-})
+});
 
 type ScheduleAction =
   | ReturnType<typeof setStartDate>
