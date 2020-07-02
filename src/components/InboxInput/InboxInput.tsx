@@ -12,7 +12,7 @@ import { GetIInput } from '../../static/todoForm';
 import { getDetailTime } from '../../static/publicFunction';
 
 interface Props extends GetIInput {
-  handleDeleteInbox: () => never;
+  deleteTodo: () => never;
 }
 
 enum imgSvgs {
@@ -27,7 +27,7 @@ const InboxInput: React.FC<Props> = ({
   thing,
   notification,
   endDate,
-  handleDeleteInbox,
+  deleteTodo,
 }) => {
   return (
     <S.InboxInput>
@@ -46,7 +46,7 @@ const InboxInput: React.FC<Props> = ({
           src={closeSvg}
           alt="delete"
           title="delete"
-          onClick={handleDeleteInbox}
+          onClick={deleteTodo}
         />
       </S.InboxInputUntil>
     </S.InboxInput>

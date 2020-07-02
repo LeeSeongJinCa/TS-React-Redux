@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+
 import * as S from './style';
 import {
   ISelectList,
@@ -18,16 +19,14 @@ const TodoTableTypeList: React.FC<Props> = ({
   shownImg,
 }) => {
   const getSelectList: React.ReactElement[] = useMemo(() => {
-    return selectList.map((item: ISelectList, key: number) =>
+    return selectList.map((item: ISelectList, i: number) =>
       <S.TodoTableTypeSeletedItem
-        key={key}
+        key={i}
         onClick={onClickSelectedType}
         data-type={item.type}
-        data-idx={key}
       >{item.type}</S.TodoTableTypeSeletedItem>,
     );
-  },
-  []);
+  }, []);
 
   return (
     <>
