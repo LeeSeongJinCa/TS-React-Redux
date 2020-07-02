@@ -6,6 +6,7 @@ import Inbox from './Inbox/Inbox.tsx';
 import InboxInputList from './InboxInputList/InboxInputList.tsx';
 import InboxInput from './InboxInput/InboxInput.tsx';
 import InboxNoList from './InboxNoList/InboxNoList.tsx';
+import InboxLoading from './InboxLoading/InboxLoading.tsx';
 import InboxBottom from './InboxBottom/InboxBottom.tsx';
 import Todo from './Todo/Todo.tsx';
 import TodoHeader from './TodoHeader/TodoHeader.tsx';
@@ -31,6 +32,7 @@ export {
   InboxInput,
   InboxInputList,
   InboxNoList,
+  InboxLoading,
   InboxBottom,
   Todo,
   TodoHeader,
