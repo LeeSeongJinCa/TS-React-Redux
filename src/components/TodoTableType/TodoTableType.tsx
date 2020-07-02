@@ -3,15 +3,21 @@ import React, {
   useRef,
   Dispatch,
   MouseEvent,
+  useMemo,
 } from 'react';
+
+import {
+  pencilSvg,
+  sportsSvg,
+  musicSvg,
+  businessSvg,
+  notSvg,
+} from '../../assets';
 import {
   TodoTableTypeInput,
   TodoTableTypeList,
 } from '../../components';
 import * as S from '../TodoTableRow/style';
-import {
-  selectList,
-} from '../../static/selectForm';
 import {
   IInputsType,
 } from '../../static/todoForm';
@@ -27,13 +33,19 @@ const TodoTableType: React.FC<Props> = ({
 }) => {
   const [isSpreadOut, setSpreadOut] = useState(false);
   const shownImg: React.MutableRefObject<any> = useRef(null);
+  const imgMap = useMemo(() => new Map([
+    ['not', notSvg],
+    ['study', pencilSvg],
+    ['music', musicSvg],
+    ['sports', sportsSvg],
+    ['business', businessSvg],
+  ]), []);
 
-  const onClickSelectedType = (event: MouseEvent<HTMLLIElement, MouseEvent>) => {
-    const { type, idx } = event.currentTarget.dataset;
-    const baseData = selectList[idx].base64;
+  const onClickSelectedType = (event: MouseEvent<HTMLLIElement>) => {
+    const { type } = event.currentTarget.dataset;
     todoDispatch({ type: 'typing', typing: type });
     setSpreadOut(false);
-    shownImg.current.src = baseData;
+    shownImg.current.src = imgMap.get(type);
   };
 
   return (

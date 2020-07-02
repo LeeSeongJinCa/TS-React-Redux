@@ -2,6 +2,7 @@ import React, {
   Dispatch,
   ChangeEvent,
 } from 'react';
+
 import * as S from './style';
 import { IInputsType } from '../../static/todoForm';
 
