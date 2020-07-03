@@ -1,8 +1,10 @@
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useEffect } from 'react';
 import {
   setStartDate,
   setEndDate,
   setScheduleThunk,
+  setReset,
+  setResetThunk,
 } from '../../modules/schedule';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../../modules';
@@ -21,6 +23,12 @@ const CalendarContainer: React.FC = () => {
       dispatch(setScheduleThunk(id, setEndDate));
     }
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(setResetThunk(setReset));
+    }
+  }, []);
 
   return <Calendar schedule={schedule} setSchedule={setSchedule} />;
 };

@@ -5,28 +5,29 @@ import React, {
   MutableRefObject,
   ReactElement,
 } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { GetIInput } from '../../static/todoForm';
-import { apiDeleteTodo } from '../../utils';
 import { Inbox, InboxInput, InboxNoList, InboxLoading } from '../../components';
 import {
   InboxInputListContainer,
   InboxBottomContainer,
 } from '../../containers';
+import { GetIInput } from '../../static/todoForm';
+import { apiDeleteTodo } from '../../utils';
 import { toast } from 'react-toastify';
+import { StoreState } from '../../modules';
+import { setTodoThunk, setTodos } from '../../modules/todo';
 
-interface Props {
-  inputs: GetIInput[];
-  getTodo: any;
-  setTodo: any;
-}
+interface Props { }
 
-const InboxContainer: React.FC<Props> = ({
-  inputs,
-  getTodo,
-  setTodo,
-}) => {
+const InboxContainer: React.FC<Props> = () => {
+  const { inputs } = useSelector((state: StoreState) => state.todo);
+  const dispatch = useDispatch();
   const isExistInput: MutableRefObject<any> = useRef(undefined);
+
+  const dispatchTodo = (value: GetIInput[]) => {
+    dispatch(setTodoThunk(value, setTodos));
+  };
 
   const successToast = () => {
     toast.success('Success to delete new thing', {
@@ -46,8 +47,8 @@ const InboxContainer: React.FC<Props> = ({
     const deleteTodo = async () => {
       try {
         await apiDeleteTodo(_id);
+        dispatchTodo(inputs.filter((o: GetIInput) => o._id !== _id));
         successToast();
-        setTodo(inputs.filter((o: GetIInput) => o._id !== _id));
       } catch (err) {
         failToast();
       }
@@ -62,9 +63,6 @@ const InboxContainer: React.FC<Props> = ({
     />);
   }), [inputs]);
 
-  useEffect(() => {
-    getTodo();
-  }, []);
   useEffect(() => {
     isExistInput.current = inputList;
   }, [inputList]);
