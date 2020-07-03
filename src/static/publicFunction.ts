@@ -7,4 +7,3 @@ export const getDetailTime = (utcTime) => {
   const dd = date.getDate();
   return `${yyyy}-${pad(mm)}-${pad(dd)}`;
 };
-
