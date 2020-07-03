@@ -5,7 +5,7 @@ import {
 
 export const PreviewHeader = styled.header`
   position: relative;
-  height: 250px;
+  height: 300px;
   padding: 24px;
   color: white;
   background-color: ${globalBackColor};

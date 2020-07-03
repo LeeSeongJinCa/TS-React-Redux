@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import {
   globalColor,
-  globalComplementaryBackColor,
-  globalComplementaryColor,
 } from '../../GlobalStyle';
 
 export const MainHeaderPreviewAside = styled.aside`
@@ -27,36 +25,32 @@ export const MainHeaderPreviewAsideBox = styled.div`
 export const MainHeaderPreviewAsideSummary = styled.div`
   flex: 1;
   display: flex;
+  flex-wrap: wrap;
   align-self: center;
   justify-content: space-around;
   margin-bottom: 24px;
 `;
 
-export const MainHeaderPreviewAsideDone = styled.div`
+export const MainHeaderPreviewAsideCategory = styled.div`
+  width: 50%;
+  margin-bottom: 8px;
+`;
+
+export const MainHeaderPreviewAsideDoneWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
-export const MainHeaderPreviewAsideSvg = styled.svg`
-  width: 50px;
-  height: 50px;
-  margin-right: 24px;
+export const MainHeaderPreviewAsideDoneSvgWrap = styled.div`
+  position: relative;
+  width: 50%;
 `;
 
-export const MainHeaderPreviewAsideCircle = styled.circle`
-  width: 100%;
-  height: 100%;
-  fill: none;
-  stroke-width: 3px;
-  stroke-linecap: round;
-  &:nth-child(1) {
-    stroke: ${globalComplementaryColor};
-  }
-  &:nth-child(2) {
-    stroke: ${globalComplementaryBackColor};
-    stroke-dasharray: 320;
-    stroke-dashoffset: calc(440 - (440 * 50) / 100);
-    z-index: 100;
-  }
+export const MainHeaderPreviewAsideDoneSvgPercent = styled.div`
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
