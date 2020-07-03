@@ -2,6 +2,7 @@ import Main from './Main/Main.tsx';
 import Preview from './Preview/Preview.tsx';
 import PreviewMain from './PreviewMain/PreviewMain.tsx';
 import PreviewAside from './PreviewAside/PreviewAside.tsx';
+import PreviewAsideSvg from './PreviewAsideSvg/PreviewAsideSvg.tsx';
 import Inbox from './Inbox/Inbox.tsx';
 import InboxInputList from './InboxInputList/InboxInputList.tsx';
 import InboxInput from './InboxInput/InboxInput.tsx';
@@ -25,9 +26,10 @@ import CalendarSetting from './CalendarSetting/CalendarSetting.tsx';
 
 export {
   Main,
+  Preview,
   PreviewMain,
   PreviewAside,
-  Preview,
+  PreviewAsideSvg,
   Inbox,
   InboxInput,
   InboxInputList,
