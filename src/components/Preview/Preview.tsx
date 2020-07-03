@@ -2,19 +2,14 @@ import React from 'react';
 import { PreviewMain, PreviewAside } from '../../components';
 
 import * as S from './style';
-import { GetIInput } from '../../static/todoForm';
 
-interface Props {
-  inputs: GetIInput[];
-}
+interface Props { }
 
-const Preview: React.FC<Props> = ({
-  inputs,
-}) => {
+const Preview: React.FC<Props> = () => {
   return (
     <S.PreviewHeader>
       <PreviewMain />
-      <PreviewAside inputs={inputs} />
+      <PreviewAside />
     </S.PreviewHeader>
   );
 };
