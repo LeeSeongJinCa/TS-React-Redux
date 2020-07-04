@@ -1,33 +1,28 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Main } from '../../components';
 import { InboxContainer, PreviewContainer } from '../../containers';
-import { GetIInput } from '../../static/todoForm';
 import { apiGetTodo } from '../../utils';
+import { setTodoThunk, setTodos } from '../../modules/todo';
 
-interface Props {}
+interface Props { }
 
 const MainContainer: React.FC<Props> = () => {
-  const [inputs, setInputs]: [
-    GetIInput[],
-    Dispatch<SetStateAction<GetIInput[]>>,
-  ] = useState([]);
+  const dispatch = useDispatch();
 
-  const getTodo = async () => {
-    setInputs((await apiGetTodo()).data);
-  };
-  const setTodo = (setValue: GetIInput[]) => {
-    setInputs(setValue);
+  const initTodo = async () => {
+    dispatch(setTodoThunk((await apiGetTodo()).data, setTodos));
   };
 
   useEffect(() => {
-    getTodo();
+    initTodo();
   }, []);
 
   return (
     <Main>
-      <PreviewContainer inputs={inputs} />
-      <InboxContainer inputs={inputs} getTodo={getTodo} setTodo={setTodo} />
+      <PreviewContainer />
+      <InboxContainer />
     </Main>
   );
 };
