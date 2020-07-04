@@ -1,8 +1,5 @@
 import React, {
   useMemo,
-  useEffect,
-  useRef,
-  MutableRefObject,
   ReactElement,
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,21 +10,15 @@ import {
   InboxBottomContainer,
 } from '../../containers';
 import { GetIInput } from '../../static/todoForm';
-import { apiDeleteTodo } from '../../utils';
 import { toast } from 'react-toastify';
 import { StoreState } from '../../modules';
-import { setTodoThunk, setTodos } from '../../modules/todo';
+import { deleteTodoThunk } from '../../modules/todo';
 
 interface Props { }
 
 const InboxContainer: React.FC<Props> = () => {
-  const { inputs } = useSelector((state: StoreState) => state.todo);
+  const { inputs, loading } = useSelector((state: StoreState) => state.todo);
   const dispatch = useDispatch();
-  const isExistInput: MutableRefObject<any> = useRef(undefined);
-
-  const dispatchTodo = (value: GetIInput[]) => {
-    dispatch(setTodoThunk(value, setTodos));
-  };
 
   const successToast = () => {
     toast.success('Success to delete new thing', {
@@ -44,10 +35,9 @@ const InboxContainer: React.FC<Props> = () => {
 
   const inputList: ReactElement[] = useMemo(() => inputs.map((input: GetIInput) => {
     const { _id, type, thing, notification, endDate } = input;
-    const deleteTodo = async () => {
+    const deleteTodo = () => {
       try {
-        await apiDeleteTodo(_id);
-        dispatchTodo(inputs.filter((o: GetIInput) => o._id !== _id));
+        dispatch(deleteTodoThunk(_id));
         successToast();
       } catch (err) {
         failToast();
@@ -63,14 +53,10 @@ const InboxContainer: React.FC<Props> = () => {
     />);
   }), [inputs]);
 
-  useEffect(() => {
-    isExistInput.current = inputList;
-  }, [inputList]);
-
   return (
     <Inbox>
       <InboxInputListContainer
-        inputList={typeof isExistInput.current === 'undefined'
+        inputList={loading
           ? <InboxLoading />
           : (inputList.length ? inputList : <InboxNoList />)
         }

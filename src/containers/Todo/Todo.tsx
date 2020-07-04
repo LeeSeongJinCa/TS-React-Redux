@@ -1,11 +1,11 @@
-import React, { useReducer, Dispatch, useState, useCallback } from 'react';
+import React, { useReducer, Dispatch, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { IInputsType } from '../../static/todoForm';
-import { setReset, setResetThunk, ScheduleState } from '../../modules/schedule';
 import { StoreState } from '../../modules';
-import { apiPostTodo } from '../../utils';
+import { addTodoThunk } from '../../modules/todo';
+import { setScheduleResetThunk, ScheduleState } from '../../modules/schedule';
 import { Todo } from '../../components';
 import {
   TodoHeaderContainer,
@@ -84,14 +84,19 @@ const TodoContainer: React.FC<Props> = () => {
     }
 
     try {
-      await apiPostTodo(todoState, schedule);
-      dispatch(setResetThunk(setReset));
+      dispatch(addTodoThunk(todoState, schedule));
       successToast();
       history.push('/');
     } catch (err) {
       failToast();
     }
   }, [todoState, schedule]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setScheduleResetThunk());
+    };
+  }, []);
 
   return (
     <Todo>
