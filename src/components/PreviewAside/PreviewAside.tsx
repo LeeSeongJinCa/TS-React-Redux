@@ -1,11 +1,12 @@
 import React, { useMemo, useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import * as S from './style';
 import { PreviewAsideSvg } from '../../components';
 import { GetIInput } from '../../static/todoForm';
+import { StoreState } from '../../modules';
 
 interface Props {
-  inputs: GetIInput[];
 }
 
 interface ICategories {
@@ -13,7 +14,8 @@ interface ICategories {
   category: string;
 }
 
-const PreviewAside: React.FC<Props> = ({ inputs }) => {
+const PreviewAside: React.FC<Props> = () => {
+  const { inputs } = useSelector((state: StoreState) => state.todo);
   const initCate = [
     { capacity: 0, category: 'sports' },
     { capacity: 0, category: 'music' },

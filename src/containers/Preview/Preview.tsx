@@ -1,17 +1,12 @@
 import React from 'react';
 
 import { Preview } from '../../components';
-import { GetIInput } from '../../static/todoForm';
 
-interface Props {
-  inputs: GetIInput[];
-}
+interface Props { }
 
-const PreviewContainer: React.FC<Props> = ({
-  inputs,
-}) => {
+const PreviewContainer: React.FC<Props> = () => {
 
-  return <Preview inputs={inputs} />;
+  return <Preview />;
 };
 
 export default PreviewContainer;
