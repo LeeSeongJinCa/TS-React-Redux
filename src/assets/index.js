@@ -14,7 +14,8 @@ import sportsSvg from './icon/sports.svg';
 import tuneSvg from './icon/tune.svg';
 import undoSvg from './icon/undo.svg';
 import hamburgerMenuSvg from './icon/hamburgerMenu.svg';
-
+import searchSvg from './icon/search.svg';
+import typingLoadingSvg from './icon/typingLoading.svg';
 
 export {
   addTodoSvg,
@@ -33,4 +34,6 @@ export {
   tuneSvg,
   undoSvg,
   hamburgerMenuSvg,
+  searchSvg,
+  typingLoadingSvg,
 };
