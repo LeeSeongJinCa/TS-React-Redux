@@ -8,6 +8,7 @@ import TodoHeaderContainer from './TodoHeader/TodoHeader.tsx';
 import TodoMainContainer from './TodoMain/TodoMain.tsx';
 import TodoAddButtonContainer from './TodoAddButton/TodoAddButton.tsx';
 import CalendarContainer from './Calendar/Calendar.tsx';
+import MovieContainer from './Movie/Movie.tsx';
 
 export {
   MainContainer,
@@ -20,4 +21,5 @@ export {
   TodoMainContainer,
   TodoAddButtonContainer,
   CalendarContainer,
+  MovieContainer,
 };

@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import {
   MainContainer,
   TodoContainer,
+  MovieContainer,
 } from './containers';
 
 interface RoutingProps { }
@@ -12,6 +13,7 @@ const Routing: React.StatelessComponent<RoutingProps> = () => {
     <>
       <Route path="/" component={MainContainer} exact={true} />
       <Route path="/todo" component={TodoContainer} />
+      <Route path="/movie" component={MovieContainer} />
     </>
   );
 };

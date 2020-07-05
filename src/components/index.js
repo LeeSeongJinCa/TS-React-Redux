@@ -23,6 +23,7 @@ import Calendar from './Calendar/Calendar.tsx';
 import CalendarDate from './CalendarDate/CalendarDate.tsx';
 import CalendarDay from './CalendarDay/CalendarDay.tsx';
 import CalendarSetting from './CalendarSetting/CalendarSetting.tsx';
+import Movie from './Movie/Movie.tsx';
 
 export {
   Main,
@@ -50,4 +51,5 @@ export {
   CalendarDate,
   CalendarDay,
   CalendarSetting,
+  Movie,
 };
