@@ -13,14 +13,14 @@ export const setEndDate = (date: string) => ({
   type: ENDDATE,
   payload: { date },
 });
-export const setReset = () => ({
+export const setScheduleReset = () => ({
   type: RESET,
 });
 
 type ScheduleAction =
   | ReturnType<typeof setStartDate>
   | ReturnType<typeof setEndDate>
-  | ReturnType<typeof setReset>;
+  | ReturnType<typeof setScheduleReset>;
 
 export type ScheduleState = {
   startDate: string;
@@ -40,13 +40,13 @@ export const setScheduleThunk: ActionCreator<ThunkAction<
 >> = (date: string, setFn: (date: string) => ScheduleAction) => (dispatch) => {
   return dispatch(setFn(date));
 };
-export const setResetThunk: ActionCreator<ThunkAction<
+export const setScheduleResetThunk: ActionCreator<ThunkAction<
   ScheduleAction,
   ScheduleState,
   void,
   any
->> = (setFn: () => ScheduleAction) => (dispatch) => {
-  return dispatch(setFn());
+>> = () => (dispatch) => {
+  return dispatch(setScheduleReset());
 };
 
 const schedule = (state = initialState, action: ScheduleAction): ScheduleState => {
@@ -64,8 +64,7 @@ const schedule = (state = initialState, action: ScheduleAction): ScheduleState =
     case RESET:
       return {
         ...state,
-        startDate: '',
-        endDate: '',
+        ...initialState,
       };
     default:
       return state;
