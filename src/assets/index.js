@@ -4,6 +4,7 @@ import businessSvg from './icon/business.svg';
 import cancelSvg from './icon/cancel.svg';
 import closeSvg from './icon/closeSvg.svg';
 import loadingSvg from './icon/loading.svg';
+import movieSvg from './icon/movie.svg';
 import musicSvg from './icon/music.svg';
 import notSvg from './icon/notInterested.svg';
 import openFull from './icon/openFull.svg';
@@ -12,7 +13,9 @@ import plusSvg from './icon/plus.svg';
 import sportsSvg from './icon/sports.svg';
 import tuneSvg from './icon/tune.svg';
 import undoSvg from './icon/undo.svg';
-
+import hamburgerMenuSvg from './icon/hamburgerMenu.svg';
+import searchSvg from './icon/search.svg';
+import typingLoadingSvg from './icon/typingLoading.svg';
 
 export {
   addTodoSvg,
@@ -21,6 +24,7 @@ export {
   cancelSvg,
   closeSvg,
   loadingSvg,
+  movieSvg,
   musicSvg,
   notSvg,
   openFull,
@@ -29,4 +33,7 @@ export {
   sportsSvg,
   tuneSvg,
   undoSvg,
+  hamburgerMenuSvg,
+  searchSvg,
+  typingLoadingSvg,
 };
