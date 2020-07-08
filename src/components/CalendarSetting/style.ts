@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { globalBackColor } from '../../GlobalStyle';
 
-export const CalnedarSetting = styled.div`
+export const CalendarSetting = styled.div`
   text-align: center;
 `;
 
