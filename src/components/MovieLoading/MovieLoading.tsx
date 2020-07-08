@@ -9,10 +9,8 @@ const MovieList: React.FC<Props> = () => {
   return (
     <S.MovieLoading>
       <img src={typingLoadingSvg} alt="loading" title="loading" />
-      <p>
-        Loading data.
-        Plz wait a moment.
-      </p>
+      <p>Loading data.</p>
+      <p>Plz wait a moment.</p>
     </S.MovieLoading>
   );
 };
