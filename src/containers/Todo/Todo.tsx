@@ -1,4 +1,4 @@
-import React, { useReducer, Dispatch, useCallback, useEffect } from 'react';
+import React, { useReducer, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -37,10 +37,10 @@ const todoInputReducer = (state: IInputsType, action: any) => {
   }
 };
 
-const WanrningWrap: React.FC = () => {
+const WarningWrap: React.FC = () => {
   return (<div>
     <p>There is something problem to add new thing.</p>
-    <p>Plese check whole inputs and date</p>
+    <p>Plz check whole inputs and date</p>
   </div>);
 };
 
@@ -48,10 +48,7 @@ const TodoContainer: React.FC<Props> = () => {
   const history = useHistory();
   const schedule = useSelector((state: StoreState) => state.schedule);
   const dispatch = useDispatch();
-  const [todoState, todoDispatch]: [
-    IInputsType,
-    Dispatch<IInputsType>,
-  ] = useReducer(todoInputReducer, todoInitialState);
+  const [todoState, todoDispatch] = useReducer(todoInputReducer, todoInitialState);
 
   const successToast = () => {
     toast.success('Success to add new thing', {
@@ -66,7 +63,7 @@ const TodoContainer: React.FC<Props> = () => {
     });
   };
   const warningToast = () => {
-    toast.warning(<WanrningWrap />, {
+    toast.warning(<WarningWrap />, {
       position: 'top-right',
       autoClose: 5000,
     });
@@ -101,7 +98,10 @@ const TodoContainer: React.FC<Props> = () => {
   return (
     <Todo>
       <TodoHeaderContainer />
-      <TodoMainContainer todoState={todoState} todoDispatch={todoDispatch} />
+      <TodoMainContainer
+        todoState={todoState}
+        todoDispatch={todoDispatch}
+      />
       <CalendarContainer />
       <TodoAddButtonContainer postTodo={postTodo} />
     </Todo>
