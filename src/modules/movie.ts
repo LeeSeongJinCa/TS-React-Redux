@@ -3,12 +3,12 @@ import { ThunkAction } from 'redux-thunk';
 
 import { apiGetGenre, apiGetList } from '../utils';
 
-interface GenreType {
+export interface IGenre {
   id: number;
   name: string;
 }
 
-interface IMovieItem {
+export interface IMovieItem {
   poster_path: string;
   popularity: number;
   vote_count: number;
@@ -26,7 +26,7 @@ interface IMovieItem {
   release_date: string;
 }
 
-interface IMovieList {
+export interface IMovieList {
   created_by: string;
   description: string;
   favorite_count: number;
@@ -34,15 +34,15 @@ interface IMovieList {
   items: IMovieItem[];
 }
 
-export const FETCH_LIST = 'FETCHLIST' as const;
-export const FETCH_GENRE = 'GENRE' as const;
+export const FETCH_LIST = 'FETCH_LIST' as const;
+export const FETCH_GENRE = 'FETCH_GENRE' as const;
 export const LOADING = 'LOADING' as const;
 
 export const fetchList = (list: IMovieList) => ({
   type: FETCH_LIST,
   payload: { list },
 });
-export const fetchGenre = (genres: GenreType[]) => ({
+export const fetchGenre = (genres: IGenre[]) => ({
   type: FETCH_GENRE,
   payload: { genres },
 });
@@ -57,11 +57,11 @@ type MovieAction =
 
 export type MovieState = {
   list: IMovieList | {};
-  genres: GenreType[];
+  genres: IGenre[];
   loading: boolean;
 };
 
-const initailState: MovieState = {
+const initialState: MovieState = {
   list: {},
   genres: [],
   loading: false,
@@ -96,7 +96,7 @@ export const fetchGenreThunk: ActionCreator<ThunkAction<
   }
 };
 
-const movie = (state = initailState, action: MovieAction): MovieState => {
+const movie = (state = initialState, action: MovieAction): MovieState => {
   switch (action.type) {
     case FETCH_LIST:
       return {
