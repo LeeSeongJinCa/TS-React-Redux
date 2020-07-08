@@ -50,4 +50,4 @@ const TodoTable: React.FC<Props> = ({
   );
 };
 
-export default TodoTable;
+export default React.memo(TodoTable);
