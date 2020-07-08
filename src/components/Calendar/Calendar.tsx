@@ -1,16 +1,16 @@
 import React, {
-  MouseEvent, useState, Dispatch, SetStateAction,
+  MouseEvent, useState,
 } from 'react';
+
 import * as S from './style';
 import { CalendarDate, CalendarDay, CalendarSetting } from '../../components';
-import { ScheduleState } from '../../modules/schedule';
+
 interface Props {
-  schedule: ScheduleState;
   setSchedule: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
-const Calendar: React.FC<Props> = ({ schedule, setSchedule }) => {
-  const [today, setToday]: [Date, Dispatch<SetStateAction<Date>>] = useState(new Date());
+const Calendar: React.FC<Props> = ({ setSchedule }) => {
+  const [today, setToday] = useState<Date>(new Date());
 
   const setMonth = (e: MouseEvent<HTMLDivElement>) => { // 1 || -1
     const { direc } = e.currentTarget.dataset;
