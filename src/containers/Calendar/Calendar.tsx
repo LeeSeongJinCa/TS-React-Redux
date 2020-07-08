@@ -22,7 +22,7 @@ const CalendarContainer: React.FC = () => {
     }
   };
 
-  return <Calendar schedule={schedule} setSchedule={setSchedule} />;
+  return <Calendar setSchedule={setSchedule} />;
 };
 
-export default CalendarContainer;
+export default React.memo(CalendarContainer);

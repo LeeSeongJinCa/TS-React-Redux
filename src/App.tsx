@@ -5,7 +5,6 @@ import Routing from './Routing';
 import { useDispatch } from 'react-redux';
 
 import { fetchInitTodo } from './modules/todo';
-import { fetchGenreThunk } from './modules/movie';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +14,6 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchInitTodo());
-    dispatch(fetchGenreThunk());
   }, []);
 
   return (

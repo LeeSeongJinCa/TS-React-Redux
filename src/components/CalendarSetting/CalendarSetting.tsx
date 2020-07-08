@@ -21,7 +21,7 @@ const CalendarSetting: React.FC<Props> = ({
   };
 
   return (
-    <S.CalnedarSetting>
+    <S.CalendarSetting>
       <S.CalendarSettingMonthWrap>
         달력 날짜:{' '}
         <S.CalendarSettingMonth>{getCurMon(today)}</S.CalendarSettingMonth>
@@ -48,7 +48,7 @@ const CalendarSetting: React.FC<Props> = ({
           </S.CalendarSettingSelectedDate>
         </S.CalendarSettingSelectedDateWrap>
       </S.CalendarSettingSelectedWrap>
-    </S.CalnedarSetting>
+    </S.CalendarSetting>
   );
 };
 

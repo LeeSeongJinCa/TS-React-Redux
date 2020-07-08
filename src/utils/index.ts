@@ -35,13 +35,19 @@ export const apiDeleteTodo = (_id: string) => {
   ! About Movie API
  * @API_KEY = 'd00eab0751f997be4f9f7a42dba9ac92';
  * @BASE_URL = 'https://api.themoviedb.org/3';
+ * @POSTER_URL, BACK_DROP_URL = `https://image.tmdb.org/t/p/original/${PATH}`
  */
 
 const API_KEY = 'd00eab0751f997be4f9f7a42dba9ac92';
 const MOVIE_BASE_URL = 'https://api.themoviedb.org/3';
-const getTypeUrl = (type: string) => `${MOVIE_BASE_URL}/${type}/movie/list?api_key=${API_KEY}&language=en-US`;
 const apiMovieDefault = axios.create({ baseURL: MOVIE_BASE_URL, timeout: 2500 });
 
+export const apiGetList = (listId: number) => {
+  const url = `list/${listId}?api_key=${API_KEY}&language=en-US`;
+  return apiMovieDefault.get(url);
+};
+
 export const apiGetGenre = () => {
-  return apiMovieDefault.get(getTypeUrl('genre'));
+  const url = `genre/movie/list?api_key=${API_KEY}&language=en-US`;
+  return apiMovieDefault.get(url);
 };
