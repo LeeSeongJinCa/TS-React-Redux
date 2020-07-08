@@ -2,7 +2,8 @@ import React, { ReactElement, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { InboxInput, InboxInputList, InboxNoList, InboxLoading } from '../../components';
+import { InboxInput, InboxInputList, InboxNoList } from '../../components';
+import { InboxSkeleton } from '../../components/Skeleton';
 import { GetIInput } from '../../static/todoForm';
 import { StoreState } from '../../modules';
 import { deleteTodoThunk } from '../../modules/todo';
@@ -46,10 +47,14 @@ const InboxInputListContainer: React.FC<Props> = () => {
     />);
   }), [inputs]);
 
-  return <InboxInputList inputList={loading
-    ? <InboxLoading />
-    : (inputList.length ? inputList : <InboxNoList />)
-  } />;
+  return (
+    <InboxInputList
+      inputList={loading
+        ? <InboxSkeleton count={4} />
+        : (inputList.length ? inputList : <InboxNoList />)
+      }
+    />
+  );
 };
 
 export default InboxInputListContainer;
