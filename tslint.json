@@ -27,7 +27,8 @@
         "styledComponents": "styled",
         "reactDom": "ReactDom",
         "react": "React",
-        "reduxThunk": "ReduxThunk"
+        "reduxThunk": "ReduxThunk",
+        "reactLoadingSkeleton": "Skeleton"
       }
     ],
     "no-console": false,
