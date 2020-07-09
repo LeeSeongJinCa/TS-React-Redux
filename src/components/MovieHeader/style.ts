@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 
 import {
-  globalBackColor, globalColor, globalComplementaryColor,
+  globalBackColor, globalComplementaryColor,
 } from '../../GlobalStyle';
 
 interface ISearchInput {
   isFocus?: boolean;
 }
-
-export const Movie = styled.div`
-  border: 1px solid red;
-`;
 
 export const MovieHeaderWrap = styled.header`
   display: flex;
@@ -18,6 +14,10 @@ export const MovieHeaderWrap = styled.header`
   justify-content: space-between;
   padding: 12px 8px;
   background-color: ${globalBackColor};
+`;
+
+export const MovieHeaderUndo = styled.img`
+  width: 35px;
 `;
 
 export const MovieHeaderSelector = styled.select`
@@ -29,7 +29,9 @@ export const MovieHeaderSelector = styled.select`
   cursor: pointer;
 `;
 
-export const MovieHeaderOption = styled.option``;
+export const MovieHeaderOption = styled.option`
+  text-transform: capitalize;
+`;
 
 export const MovieHeaderSearchWrap = styled.div`
   display: flex;
@@ -47,6 +49,7 @@ export const MovieHeaderSearchImg = styled.img`
 export const MovieHeaderSearchInput = styled.input`
   width: ${({ isFocus }: ISearchInput) => isFocus ? 260 : 0}px;
   padding: 0;
+  padding-left: 4px;
   border: 0;
   border-bottom: 1px solid #707070;
   background-color: transparent;
