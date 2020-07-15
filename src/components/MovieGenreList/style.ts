@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MovieListWrap = styled.section`
+export const MovieGenreListWrap = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

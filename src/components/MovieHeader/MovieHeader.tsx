@@ -1,44 +1,52 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 
 import * as S from './style';
-import { searchSvg } from '../../assets';
+import { searchSvg, undoSvg } from '../../assets';
+import { useHistory } from 'react-router-dom';
 
-interface Props { }
+interface Props {
+  isFocus: any;
+  handleFocus: any;
+  handleNotFocus: any;
+  handleChangeSelect: any;
+}
 
-const MovieHeader: React.FC<Props> = () => {
-  const [isFocus, setIsFocus] = useState<boolean>(false);
+const MovieHeader: React.FC<Props> = ({
+  isFocus,
+  handleFocus,
+  handleNotFocus,
+  handleChangeSelect,
+}) => {
+  const history = useHistory();
   const searchRef = useRef(null);
 
-  const onClickFocus = () => {
-    setIsFocus(true);
-    searchRef.current.focus();
+  const handleFocusWithRef = () => {
+    handleFocus(searchRef);
   };
-  const handleFocus = () => {
-    setIsFocus(true);
-  };
-  const handleBlur = () => {
-    setIsFocus(false);
+  const goMain = () => {
+    history.push('/');
   };
 
   return (
     <S.MovieHeaderWrap>
-      <S.MovieHeaderSelector name="genres">
-        <S.MovieHeaderOption value="all">All</S.MovieHeaderOption>
-        <S.MovieHeaderOption value="action">Action</S.MovieHeaderOption>
-        <S.MovieHeaderOption value="adventure">Adventure</S.MovieHeaderOption>
-        <S.MovieHeaderOption value="animation">Animation</S.MovieHeaderOption>
+      <S.MovieHeaderUndo onClick={goMain} src={undoSvg} alt="undo" title="undo" />
+      <S.MovieHeaderSelector onChange={handleChangeSelect} name="genres">
+        {['all', 'movie', 'genre'].map((option: string) => (
+          <S.MovieHeaderOption key={option} value={option}>
+            {option}
+          </S.MovieHeaderOption>
+        ))}
       </S.MovieHeaderSelector>
       <S.MovieHeaderSearchWrap>
         <S.MovieHeaderSearchImg
           src={searchSvg}
-          onClick={onClickFocus}
+          onClick={handleFocusWithRef}
           alt="search"
           title="search"
         />
         <S.MovieHeaderSearchInput
           type="text"
-          onFocus={handleFocus}
-          onBlur={handleBlur}
+          onBlur={handleNotFocus}
           placeholder="Search"
           name="Search"
           ref={searchRef}

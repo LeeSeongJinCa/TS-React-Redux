@@ -1,32 +1,25 @@
-import React from 'react';
+import React, { useMemo, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
 import * as S from './style';
-import { MovieLoading } from '../../components';
-import { addTodoSvg } from '../../assets';
+import { MovieItem } from '../../components';
 import { StoreState } from '../../modules';
+import { MovieState, IMovieList, IMovieItem } from '../../modules/movie';
 
 interface Props { }
 
 const MovieList: React.FC<Props> = () => {
-  const { genres, loading } = useSelector((state: StoreState) => state.movie);
+  const { list }: MovieState = useSelector((state: StoreState) => state.movie);
 
-  return (
-    <S.MovieListWrap>
-      {loading
-        ? <MovieLoading />
-        : genres.map(({ id, name }) => <S.MovieItem key={id}>
-          <S.MovieItemPoster>
-            <S.MovieItemPosterImg src={addTodoSvg} alt="movieName" title="movieName" />
-          </S.MovieItemPoster>
-          <S.MovieItemInfo>
-            <S.MovieItemInfoTitle>{id}</S.MovieItemInfoTitle>
-            <S.MovieItemInfoGenres>{name}</S.MovieItemInfoGenres>
-          </S.MovieItemInfo>
-        </S.MovieItem>)
-      }
-    </S.MovieListWrap>
-  );
+  const memorizedMovieList = useMemo((): ReactElement[] | null => {
+    const listCopy = (list as IMovieList).items as IMovieItem[];
+    return listCopy?.map((item: IMovieItem) => <MovieItem
+      key={item.id}
+      item={item}
+    />);
+  }, [list]);
+
+  return <S.MovieListWrap>{memorizedMovieList}</S.MovieListWrap>;
 };
 
-export default MovieList;
+export default React.memo(MovieList);
