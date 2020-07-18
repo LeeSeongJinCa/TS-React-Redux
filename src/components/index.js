@@ -26,6 +26,9 @@ import CalendarSetting from './CalendarSetting/CalendarSetting.tsx';
 import Movie from './Movie/Movie.tsx';
 import MovieHeader from './MovieHeader/MovieHeader.tsx';
 import MovieList from './MovieList/MovieList.tsx';
+import MovieItem from './MovieItem/MovieItem.tsx';
+import MovieGenreList from './MovieGenreList/MovieGenreList.tsx';
+import MovieGenreItem from './MovieGenreItem/MovieGenreItem.tsx';
 import MovieLoading from './MovieLoading/MovieLoading.tsx';
 
 export {
@@ -57,5 +60,8 @@ export {
   Movie,
   MovieHeader,
   MovieList,
+  MovieItem,
+  MovieGenreList,
+  MovieGenreItem,
   MovieLoading,
 };
