@@ -15,7 +15,7 @@ import {
 } from '../../containers';
 import { toast } from 'react-toastify';
 
-interface Props { }
+interface Props {}
 
 const todoInitialState: IInputsType = {
   type: '',
@@ -38,17 +38,22 @@ const todoInputReducer = (state: IInputsType, action: any) => {
 };
 
 const WarningWrap: React.FC = () => {
-  return (<div>
-    <p>There is something problem to add new thing.</p>
-    <p>Plz check whole inputs and date</p>
-  </div>);
+  return (
+    <div>
+      <p>There is something problem to add new thing.</p>
+      <p>Plz check whole inputs and date</p>
+    </div>
+  );
 };
 
 const TodoContainer: React.FC<Props> = () => {
   const history = useHistory();
   const schedule = useSelector((state: StoreState) => state.schedule);
   const dispatch = useDispatch();
-  const [todoState, todoDispatch] = useReducer(todoInputReducer, todoInitialState);
+  const [todoState, todoDispatch] = useReducer(
+    todoInputReducer,
+    todoInitialState,
+  );
 
   const successToast = () => {
     toast.success('Success to add new thing', {
@@ -72,7 +77,7 @@ const TodoContainer: React.FC<Props> = () => {
   const isProblemMakeTodo = (
     { thing, typing, notification }: IInputsType,
     { startDate, endDate }: ScheduleState,
-  ) => (typing !== 'not' && thing && notification && startDate && endDate);
+  ) => typing !== 'not' && thing && notification && startDate && endDate;
 
   const postTodo = useCallback(async () => {
     if (!isProblemMakeTodo(todoState, schedule)) {
@@ -98,10 +103,7 @@ const TodoContainer: React.FC<Props> = () => {
   return (
     <Todo>
       <TodoHeaderContainer />
-      <TodoMainContainer
-        todoState={todoState}
-        todoDispatch={todoDispatch}
-      />
+      <TodoMainContainer todoState={todoState} todoDispatch={todoDispatch} />
       <CalendarContainer />
       <TodoAddButtonContainer postTodo={postTodo} />
     </Todo>
