@@ -6,8 +6,7 @@ import { PreviewAsideSvg } from '../../components';
 import { GetIInput } from '../../static/todoForm';
 import { StoreState } from '../../modules';
 
-interface Props {
-}
+interface Props {}
 
 interface ICategories {
   capacity: number;
@@ -26,9 +25,9 @@ const PreviewAside: React.FC<Props> = () => {
 
   const setCategoriesCapacity = useCallback(
     (inputsCopy: GetIInput[]) => {
-      inputsCopy.forEach(({ type }) => {
+      inputsCopy.forEach(() => {
         const idx = categories.findIndex(
-          (c: ICategories) => c.category === type,
+          (c: ICategories) => c.category === 'sports',
         );
         const copy = [...initCate];
         copy[idx].capacity += 1;

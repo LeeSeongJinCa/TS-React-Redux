@@ -10,18 +10,17 @@ export interface IInputsType {
 }
 
 export interface GetIInput {
-  _id: string;
-  type: string;
-  thing: string;
-  notification: string;
-  startDate: number;
-  endDate: number;
+  content: string;
+  createdDateTime: string;
+  id: number;
+  isComplete: boolean;
 }
 
 export const todoInputList: IInputs[] = [
   {
     id: 'thing',
-  }, {
+  },
+  {
     id: 'notification',
   },
 ];

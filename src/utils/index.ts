@@ -5,30 +5,32 @@ import { ScheduleState } from '../modules/schedule';
 
 /*
   ! About Todo
- * URL = 'http://localhost:3000';
+ * MongoDB URL = 'http://localhost:3000';
+ * Spring boot Url = 'http://localhost:8080';
  */
 
-const LOCAL_URL = 'http://localhost:3000';
+const LOCAL_URL = 'http://localhost:8080/api';
 const apiTodoDefault = axios.create({ baseURL: LOCAL_URL, timeout: 2500 });
 
 export const apiPostTodo = (
   { thing, typing, notification }: IInputsType,
-  { startDate, endDate }: ScheduleState) => {
-  return apiTodoDefault.post('todos', {
-    thing,
-    notification,
-    startDate: new Date(startDate).getTime(),
-    endDate: new Date(endDate).getTime(),
-    type: typing,
+  { startDate, endDate }: ScheduleState,
+) => {
+  return apiTodoDefault.post('/todos', {
+    content: thing,
   });
 };
 
 export const apiGetTodo = () => {
-  return apiTodoDefault.get('todos');
+  return apiTodoDefault.get('/todos');
 };
 
-export const apiDeleteTodo = (_id: string) => {
-  return apiTodoDefault.delete(`todos/${_id}`);
+export const apiPutTodo = (id: number) => {
+  return apiTodoDefault.put(`/todos/${id}`);
+};
+
+export const apiDeleteTodo = (id: number) => {
+  return apiTodoDefault.delete(`todos/${id}`);
 };
 
 /*
@@ -40,7 +42,10 @@ export const apiDeleteTodo = (_id: string) => {
 
 const API_KEY = 'd00eab0751f997be4f9f7a42dba9ac92';
 const MOVIE_BASE_URL = 'https://api.themoviedb.org/3';
-const apiMovieDefault = axios.create({ baseURL: MOVIE_BASE_URL, timeout: 2500 });
+const apiMovieDefault = axios.create({
+  baseURL: MOVIE_BASE_URL,
+  timeout: 2500,
+});
 
 export const apiGetList = (listId: number) => {
   const url = `list/${listId}?api_key=${API_KEY}&language=en-US`;
