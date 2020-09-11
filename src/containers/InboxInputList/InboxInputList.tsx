@@ -6,9 +6,9 @@ import { InboxInput, InboxInputList, InboxNoList } from '../../components';
 import { InboxSkeleton } from '../../components/Skeleton';
 import { GetIInput } from '../../static/todoForm';
 import { StoreState } from '../../modules';
-import { deleteTodoThunk } from '../../modules/todo';
+import { deleteTodoThunk, updateTodoThunk } from '../../modules/todo';
 
-interface Props { }
+interface Props {}
 
 const InboxInputListContainer: React.FC<Props> = () => {
   const { inputs, loading } = useSelector((state: StoreState) => state.todo);
@@ -27,31 +27,51 @@ const InboxInputListContainer: React.FC<Props> = () => {
     });
   };
 
-  const inputList: ReactElement[] = useMemo(() => inputs.map((input: GetIInput) => {
-    const { _id, type, thing, notification, endDate } = input;
-    const deleteTodo = () => {
-      try {
-        dispatch(deleteTodoThunk(_id));
-        successToast();
-      } catch (err) {
-        failToast();
-      }
-    };
-    return (<InboxInput
-      key={_id}
-      type={type}
-      thing={thing}
-      notification={notification}
-      endDate={endDate}
-      deleteTodo={deleteTodo}
-    />);
-  }), [inputs]);
+  const inputList: ReactElement[] = useMemo(
+    () =>
+      inputs.map((input: GetIInput) => {
+        const { id, content, isComplete, createdDateTime } = input;
+        const deleteTodo = () => {
+          try {
+            dispatch(deleteTodoThunk(id));
+            successToast();
+          } catch (err) {
+            failToast();
+          }
+        };
+        const updateTodo = () => {
+          try {
+            dispatch(updateTodoThunk(id));
+            successToast();
+          } catch (error) {
+            failToast();
+          }
+        };
+        return (
+          <InboxInput
+            key={id}
+            id={id}
+            content={content}
+            isComplete={isComplete}
+            createdDateTime={createdDateTime}
+            deleteTodo={deleteTodo}
+            updateTodo={updateTodo}
+          />
+        );
+      }),
+    [inputs],
+  );
 
   return (
     <InboxInputList
-      inputList={loading
-        ? <InboxSkeleton count={4} />
-        : (inputList.length ? inputList : <InboxNoList />)
+      inputList={
+        loading ? (
+          <InboxSkeleton count={4} />
+        ) : inputList.length ? (
+          inputList
+        ) : (
+          <InboxNoList />
+        )
       }
     />
   );

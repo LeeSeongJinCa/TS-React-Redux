@@ -1,14 +1,20 @@
 import styled, { AnyStyledComponent } from 'styled-components';
-import {
-  globalButtonColor,
-  globalColor,
-} from '../../GlobalStyle';
+import { globalButtonColor, globalColor } from '../../GlobalStyle';
 
 export const InboxInput = styled.li`
+  position: relative;
   display: flex;
   height: 80px;
   padding: 16px 8px;
   border-bottom: 1.5px solid ${globalColor};
+  > .lineThrough {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    border: 2px solid black;
+  }
 `;
 
 export const InboxInputImgWrap = styled.div`
@@ -31,7 +37,10 @@ export const InboxInputInfo = styled.div`
   width: 400px;
 `;
 
-const returnStyleComp = (el: AnyStyledComponent, style: string) => styled(el)`${style}`;
+const returnStyleComp = (el: AnyStyledComponent, style: string) =>
+  styled(el)`
+    ${style}
+  `;
 
 const InboxInputInfoTextsStyle = `
   white-space: nowrap;
@@ -39,10 +48,14 @@ const InboxInputInfoTextsStyle = `
   text-overflow: ellipsis;
 `;
 
-export const InboxInputInfoTextH3 =
-  returnStyleComp(('h3' as AnyStyledComponent), InboxInputInfoTextsStyle);
-export const InboxInputInfoTextP =
-  returnStyleComp(('p' as AnyStyledComponent), InboxInputInfoTextsStyle);
+export const InboxInputInfoTextH3 = returnStyleComp(
+  'h3' as AnyStyledComponent,
+  InboxInputInfoTextsStyle,
+);
+export const InboxInputInfoTextP = returnStyleComp(
+  'p' as AnyStyledComponent,
+  InboxInputInfoTextsStyle,
+);
 
 export const InboxInputUntil = styled.div`
   text-align: right;

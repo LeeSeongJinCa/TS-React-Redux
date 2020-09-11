@@ -1,4 +1,4 @@
-const webpack = require("webpack");
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -63,7 +63,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     inline: true,
-    port: 7778,
+    port: 3001,
     hot: true,
     historyApiFallback: true,
   },
