@@ -3,33 +3,39 @@ import { ThunkAction } from 'redux-thunk';
 
 import { ScheduleState } from './schedule';
 import { GetIInput, IInputsType } from '../static/todoForm';
-import { apiGetTodo, apiPostTodo, apiDeleteTodo } from '../utils';
+import { apiGetTodo, apiPostTodo, apiPutTodo, apiDeleteTodo } from '../utils';
 
-export const INITTODO = 'INITTODO' as const;
-export const LODINGTODO = 'LODINGTODO' as const;
-export const ADDTODO = 'ADDTODO' as const;
-export const DELETETODO = 'DELETETODO' as const;
+export const INIT_TODO = 'INIT_TODO' as const;
+export const LOADING_TODO = 'LOADING_TODO' as const;
+export const ADD_TODO = 'ADD_TODO' as const;
+export const UPDATE_TODO = 'UPDATE_TODO' as const;
+export const DELETE_TODO = 'DELETE_TODO' as const;
 
 export const initTodo = (inputs: GetIInput[]) => ({
-  type: INITTODO,
+  type: INIT_TODO,
   payload: { inputs },
 });
-export const lodingTodo = () => ({
-  type: LODINGTODO,
+export const loadingTodo = () => ({
+  type: LOADING_TODO,
 });
 export const addTodo = (input: GetIInput) => ({
-  type: ADDTODO,
+  type: ADD_TODO,
   payload: { input },
 });
-export const deleteTodo = (_id: string) => ({
-  type: DELETETODO,
-  payload: { _id },
+export const updateTodo = (id: number) => ({
+  type: UPDATE_TODO,
+  payload: { id },
+});
+export const deleteTodo = (id: number) => ({
+  type: DELETE_TODO,
+  payload: { id },
 });
 
 type TodoAction =
   | ReturnType<typeof initTodo>
-  | ReturnType<typeof lodingTodo>
+  | ReturnType<typeof loadingTodo>
   | ReturnType<typeof addTodo>
+  | ReturnType<typeof updateTodo>
   | ReturnType<typeof deleteTodo>;
 
 export type TodoState = {
@@ -48,9 +54,10 @@ export const fetchInitTodo: ActionCreator<ThunkAction<
   null,
   TodoAction
 >> = () => async (dispatch) => {
-  dispatch(lodingTodo());
+  dispatch(loadingTodo());
   try {
     const res = await apiGetTodo();
+    console.log(res);
     dispatch(initTodo(res.data));
   } catch (err) {
     throw err;
@@ -71,15 +78,29 @@ export const addTodoThunk: ActionCreator<ThunkAction<
   }
 };
 
+export const updateTodoThunk: ActionCreator<ThunkAction<
+  Promise<void>,
+  TodoState,
+  null,
+  TodoAction
+>> = (id: number) => async (dispatch) => {
+  try {
+    await apiPutTodo(id);
+    dispatch(updateTodo(id));
+  } catch (err) {
+    throw err;
+  }
+};
+
 export const deleteTodoThunk: ActionCreator<ThunkAction<
   Promise<void>,
   TodoState,
   null,
   TodoAction
->> = (_id: string) => async (dispatch) => {
+>> = (id: number) => async (dispatch) => {
   try {
-    await apiDeleteTodo(_id);
-    dispatch(deleteTodo(_id));
+    await apiDeleteTodo(id);
+    dispatch(deleteTodo(id));
   } catch (err) {
     throw err;
   }
@@ -87,18 +108,26 @@ export const deleteTodoThunk: ActionCreator<ThunkAction<
 
 const todo = (state = initialState, action: TodoAction): TodoState => {
   switch (action.type) {
-    case INITTODO:
+    case INIT_TODO:
       return { ...state, inputs: action.payload.inputs, loading: false };
-    case LODINGTODO:
+    case LOADING_TODO:
       return { ...state, loading: true };
-    case ADDTODO:
+    case ADD_TODO:
       const copy = [...state.inputs];
       copy.push(action.payload.input);
       return { ...state, inputs: copy };
-    case DELETETODO:
+    case UPDATE_TODO:
+      const updateCopy = [...state.inputs];
+      updateCopy.forEach((c: GetIInput) =>
+        c.id === action.payload.id ? !c.isComplete : c.isComplete,
+      );
+      return state;
+    case DELETE_TODO:
       return {
         ...state,
-        inputs: state.inputs.filter((o: GetIInput) => o._id !== action.payload._id),
+        inputs: state.inputs.filter(
+          (o: GetIInput) => o.id !== action.payload.id,
+        ),
       };
     default:
       return state;

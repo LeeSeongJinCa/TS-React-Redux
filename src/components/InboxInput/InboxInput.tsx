@@ -12,7 +12,8 @@ import { GetIInput } from '../../static/todoForm';
 import { getDetailTime } from '../../static/publicFunction';
 
 interface Props extends GetIInput {
-  deleteTodo: () => never;
+  deleteTodo: () => void;
+  updateTodo: () => void;
 }
 
 enum imgSvgs {
@@ -23,24 +24,31 @@ enum imgSvgs {
 }
 
 const InboxInput: React.FC<Props> = ({
-  type,
-  thing,
-  notification,
-  endDate,
+  content,
+  isComplete,
+  createdDateTime,
   deleteTodo,
+  updateTodo,
 }) => {
   return (
     <S.InboxInput>
+      {isComplete && <div className="lineThrough" />}
       <S.InboxInputImgWrap>
-        <S.InboxInputImg src={imgSvgs[type]} alt={type} title={type} />
+        <S.InboxInputImg
+          src={pencilSvg}
+          alt={'study'}
+          title={'study'}
+          onClick={updateTodo}
+        />
       </S.InboxInputImgWrap>
       <S.InboxInputInfo>
-        <S.InboxInputInfoTextH3>{thing}</S.InboxInputInfoTextH3>
-        <S.InboxInputInfoTextP>{notification}</S.InboxInputInfoTextP>
+        <S.InboxInputInfoTextH3>{content}</S.InboxInputInfoTextH3>
+        <S.InboxInputInfoTextP>{content}</S.InboxInputInfoTextP>
       </S.InboxInputInfo>
       <S.InboxInputUntil>
         <S.InboxInputUntilEnd>
-          기간:{` ${getDetailTime(endDate)}`}
+          {/* 기간:{` ${getDetailTime(createdDateTime)}`} */}
+          생성 날짜: {createdDateTime}
         </S.InboxInputUntilEnd>
         <S.InboxInputUntilDeleteImg
           src={closeSvg}
