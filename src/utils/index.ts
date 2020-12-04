@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { IInputsType } from '../static/todoForm';
-import { ScheduleState } from '../modules/schedule';
+import { IInputsType } from "../static/todoForm";
+import { ScheduleState } from "../modules/schedule";
 
 /*
   ! About Todo
@@ -9,20 +9,20 @@ import { ScheduleState } from '../modules/schedule';
  * Spring boot Url = 'http://localhost:8080';
  */
 
-const LOCAL_URL = 'http://localhost:8080/api';
+const LOCAL_URL = "http://localhost:8080/api";
 const apiTodoDefault = axios.create({ baseURL: LOCAL_URL, timeout: 2500 });
 
 export const apiPostTodo = (
   { thing, typing, notification }: IInputsType,
-  { startDate, endDate }: ScheduleState,
+  { startDate, endDate }: ScheduleState
 ) => {
-  return apiTodoDefault.post('/todos', {
+  return apiTodoDefault.post("/todos", {
     content: thing,
   });
 };
 
 export const apiGetTodo = () => {
-  return apiTodoDefault.get('/todos');
+  return apiTodoDefault.get("/todos");
 };
 
 export const apiPutTodo = (id: number) => {
@@ -40,8 +40,8 @@ export const apiDeleteTodo = (id: number) => {
  * @POSTER_URL, BACK_DROP_URL = `https://image.tmdb.org/t/p/original/${PATH}`
  */
 
-const API_KEY = 'd00eab0751f997be4f9f7a42dba9ac92';
-const MOVIE_BASE_URL = 'https://api.themoviedb.org/3';
+const API_KEY = "d00eab0751f997be4f9f7a42dba9ac92";
+const MOVIE_BASE_URL = "https://api.themoviedb.org/3";
 const apiMovieDefault = axios.create({
   baseURL: MOVIE_BASE_URL,
   timeout: 2500,
